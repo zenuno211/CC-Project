@@ -1,0 +1,11 @@
+int r[5];
+int i = 0;
+int produto = 1;
+while(i < 5) {
+    read(r[i]);
+    produto = produto * r[i];
+    i = i + 1;
+}
+
+print("O produtório dos números inseridos é: " );
+println(produto);

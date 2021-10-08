@@ -1,0 +1,39 @@
+start
+read
+atoi
+pushi 0
+pushi 100000
+while0:
+pushg 0
+pushi 0
+sup
+jz while0end
+read 
+atoi 
+storeg 1
+pushg 1
+pushg 2
+inf
+jz if0end
+pushg 1
+storeg 2
+if0end:
+pushg 0
+pushi 1
+sub
+storeg 0
+jump while0
+while0end:
+pushs "Minimo inserido:"
+writes
+pushs "\n"
+writes
+pushg 2
+writei
+pushs "\n"
+writes
+stop
+
+
+
+INPUT: 5 0 -3 10 7 9

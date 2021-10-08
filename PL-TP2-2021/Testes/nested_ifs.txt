@@ -1,0 +1,21 @@
+int n = 1;
+int i = 1;
+int c;
+println("Valor a comparar:");
+read(c);
+while(n > 0) {
+    read(n);
+    if (n < c){
+        print("Menor do que ");
+        println(c);
+    } else {
+        if (n == c){
+            print("Igual a ");
+            println(c);
+        } else {
+            print("Maior do que ");
+            println(c);
+        }
+    }
+}
+println("Fim");

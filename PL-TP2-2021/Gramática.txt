@@ -1,0 +1,69 @@
+Programa : Declaracoes Operacoes
+
+Declaracoes : Declaracao Declaracoes
+            | 
+
+Declaracao : INT DeclaracaoInt ';'
+
+DeclaracaoInt : ID 
+              | ID '=' Exp
+              | ID '=' READ '(' ')'
+              | ID '[' NUMBER ']'
+              | ID '[' NUMBER ']' '=' Lista
+              | ID '[' NUMBER ']' '[' NUMBER ']'
+
+Lista : '{' NUMBER RLista '}
+
+RLista : ',' NUMBER RLista
+       |
+       
+Operacoes : Operacao Operacoes
+          | 
+
+Operacao : Atribuicao
+         | Ciclo
+         | Condicional
+         | Output
+
+Atribuicao : AtribuicaoInt ';'
+
+AtribuicaoInt : ID '=' Exp
+              | READ '(' ID ')'
+              | ID '[' Exp ']' '=' Exp
+              | READ '(' ID '[' Exp ']' ')'
+              | ID '[' Exp ']' '[' Exp ']' '=' Exp 
+              | READ '(' ID '[' Exp ']' '[' Exp ']' ')'
+
+Ciclo : WHILE '(' Comparacao ')' '{' Operacoes '}'
+
+Condicional : IF '(' Comparacao ')' '{' Operacoes '}'
+            | IF '(' Comparacao ')' '{' Operacoes '}' ELSE '{' Operacoes '}
+
+Comparacao : Exp Comparador Exp
+
+Comparador : COMP
+           | '<'
+           | '>'
+           | MENORIGUAL
+           | MAIORIGUAL
+           | DIF
+
+Output: PRINT '(' Exp ')' ';'
+      | PRINT '(' STRING ')' ';'
+      | PRINTLN '(' Exp ')' ';'
+      | PRINTLN '(' STRING ')' ';'
+
+Exp : Exp '+' Termo
+    | Exp '-' Termo
+    | Termo
+
+Termo : Termo '*' Fator
+      | Termo '/' Fator
+      | Termo '%' Fator
+      | Fator
+
+Fator : ID
+      | ID '[' Exp ']'
+      | ID '[' Exp ']' '[' Exp ']'
+      | NUMBER
+      | '(' Exp ')'

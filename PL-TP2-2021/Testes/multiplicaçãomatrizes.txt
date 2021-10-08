@@ -1,0 +1,59 @@
+int i;
+int j;
+int k;
+int m;
+int N = 3;
+int res[3][3];
+int mat1[3][3];
+int mat2[3][3];
+
+while(m < 2){
+    while (i < N) {
+        while (j < N) {
+            print("Value for mat");
+            print(m+1);
+            print(" ");
+            print(i);
+            print(" ");
+            print(j);
+            print(" : ");
+            if(m == 0){
+                read(mat1[i][j]);
+            } else {
+                read(mat2[i][j]);
+            }
+            
+            j = j +1;
+        }
+        j = 0;
+        i = i + 1;
+    }
+    i = 0;
+    m = m + 1;
+}
+
+while (i < N) {
+    while (j < N) {
+        res[i][j] = 0;
+        while(k < 3){
+            res[i][j] = res[i][j] + mat1[i][k] * mat2[k][j];
+            k = k +1;
+        } 
+        k = 0;
+        j = j +1;
+    }
+    j = 0;
+    i = i + 1;
+}
+i = 0;
+
+while (i < N) {
+    while (j < N) {
+        print(res[i][j]);
+        print(" ");
+        j = j + 1;
+    }
+    j = 0;
+    println("");
+    i = i + 1;
+}

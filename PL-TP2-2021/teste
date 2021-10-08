@@ -1,0 +1,85 @@
+pushn 4
+pushi 0
+pushi 0
+
+start
+
+while0:
+pushg 4
+pushi 4
+inf
+jz while0end
+
+pushgp
+pushi 0
+padd
+pushg 4
+read 
+atoi 
+storen
+pushg 4
+pushi 1
+add
+storeg 4
+jump while0
+
+while0end:
+pushgp
+pushi 0
+padd
+pushi 0
+loadn
+pushgp
+pushi 0
+padd
+pushi 1
+loadn
+equal
+jz if2end
+
+pushgp
+pushi 0
+padd
+pushi 2
+loadn
+pushgp
+pushi 0
+padd
+pushi 3
+loadn
+equal
+jz if1end
+
+pushgp
+pushi 0
+padd
+pushi 1
+loadn
+pushgp
+pushi 0
+padd
+pushi 2
+loadn
+equal
+jz if0end
+
+pushs "Os valores são todos iguais"
+writes
+pushs "\n"
+writes
+pushi 1
+storeg 5
+if0end:
+if1end:
+if2end:
+pushg 5
+pushi 0
+equal
+jz if3end
+
+pushs "Os valores não são todos iguais"
+writes
+pushs "\n"
+writes
+if3end:
+stop

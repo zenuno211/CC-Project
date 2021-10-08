@@ -1,0 +1,41 @@
+pushn 5
+pushi 0
+pushi 1
+
+start
+
+while0:
+pushg 5
+pushi 5
+inf
+jz while0end
+
+pushgp
+pushi 0
+padd
+pushg 5
+read 
+atoi 
+storen
+pushg 6
+pushgp
+pushi 0
+padd
+pushg 5
+loadn
+mul
+storeg 6
+pushg 5
+pushi 1
+add
+storeg 5
+jump while0
+
+while0end:
+pushs "O produtório dos números inseridos é: "
+writes
+pushg 6
+writei
+pushs "\n"
+writes
+stop

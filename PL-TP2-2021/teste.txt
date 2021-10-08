@@ -1,0 +1,30 @@
+start
+pushi 4
+pushi 2
+pushi 5
+while0:
+pushg 0
+pushi 2
+sup
+jz while0end
+pushg 1
+pushi 3
+mul
+storeg 1
+pushg 0
+pushi 1
+sub
+storeg 0
+jump while0
+while0end:
+pushg 1
+writei
+pushs "\n"
+writes
+pushg 2
+writei
+pushs "\n"
+writes
+pushs "Teste final"
+writes
+stop

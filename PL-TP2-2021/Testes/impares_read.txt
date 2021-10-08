@@ -1,0 +1,24 @@
+int i;
+int a[6];
+int impar[6];
+int c;
+while (i < 6) {
+    read(a[i]);
+    if (a[i] % 2 == 1){
+        impar[c] = a[i];
+        c = c + 1;
+    }
+    i = i + 1;
+}
+i = 0;
+print("Foram encontrados ");
+print(c);
+print(" números impares: ");
+while (i < c) {
+    if (i != 0){
+        print(", ");
+    }
+    print(impar[i]);
+    i = i + 1;
+}
+println("");

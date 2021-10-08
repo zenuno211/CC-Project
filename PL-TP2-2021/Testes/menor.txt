@@ -1,0 +1,13 @@
+int n = read();
+int a;
+int min = 100000;
+while (n > 0) {
+    read(a);
+    if (a < min) {
+        min = a;
+    }
+    n = n - 1;
+}
+
+print("Minimo inserido: ");
+println(min);

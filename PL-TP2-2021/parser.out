@@ -1,0 +1,2194 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> Programa
+Rule 1     Programa -> Declaracoes Operacoes
+Rule 2     Declaracoes -> Declaracao Declaracoes
+Rule 3     Declaracoes -> <empty>
+Rule 4     Declaracao -> INT DeclaracaoInt ;
+Rule 5     Declaracao -> INT DeclaracaoInt
+Rule 6     DeclaracaoInt -> ID = Exp
+Rule 7     DeclaracaoInt -> ID
+Rule 8     DeclaracaoInt -> ID = READ ( )
+Rule 9     DeclaracaoInt -> ID [ NUMBER ]
+Rule 10    DeclaracaoInt -> ID [ NUMBER ] = Lista
+Rule 11    DeclaracaoInt -> ID [ NUMBER ] [ NUMBER ]
+Rule 12    Lista -> { NUMBER RLista }
+Rule 13    RLista -> , NUMBER RLista
+Rule 14    RLista -> <empty>
+Rule 15    Operacoes -> Operacao Operacoes
+Rule 16    Operacoes -> <empty>
+Rule 17    Operacao -> Atribuicao
+Rule 18    Operacao -> Ciclo
+Rule 19    Operacao -> Condicional
+Rule 20    Operacao -> Output
+Rule 21    Atribuicao -> AtribuicaoInt ;
+Rule 22    Atribuicao -> AtribuicaoInt
+Rule 23    AtribuicaoInt -> ID = Exp
+Rule 24    AtribuicaoInt -> READ ( ID )
+Rule 25    AtribuicaoInt -> ID [ Exp ] = Exp
+Rule 26    AtribuicaoInt -> READ ( ID [ Exp ] )
+Rule 27    AtribuicaoInt -> ID [ Exp ] [ Exp ] = Exp
+Rule 28    AtribuicaoInt -> READ ( ID [ Exp ] [ Exp ] )
+Rule 29    Ciclo -> WHILE ( Comparacao ) { Operacoes }
+Rule 30    Condicional -> IF ( Comparacao ) { Operacoes }
+Rule 31    Condicional -> IF ( Comparacao ) { Operacoes } ELSE { Operacoes }
+Rule 32    Comparacao -> Exp Comparador Exp
+Rule 33    Comparador -> COMP
+Rule 34    Comparador -> <
+Rule 35    Comparador -> >
+Rule 36    Comparador -> MENORIGUAL
+Rule 37    Comparador -> MAIORIGUAL
+Rule 38    Comparador -> DIF
+Rule 39    Output -> PRINT ( Exp ) ;
+Rule 40    Output -> PRINT ( STRING ) ;
+Rule 41    Output -> PRINTLN ( Exp ) ;
+Rule 42    Output -> PRINTLN ( STRING ) ;
+Rule 43    Exp -> Exp + Termo
+Rule 44    Exp -> Exp - Termo
+Rule 45    Exp -> Termo
+Rule 46    Termo -> Termo * Fator
+Rule 47    Termo -> Termo / Fator
+Rule 48    Termo -> Termo % Fator
+Rule 49    Termo -> Fator
+Rule 50    Fator -> ID
+Rule 51    Fator -> ID [ Exp ]
+Rule 52    Fator -> ID [ Exp ] [ Exp ]
+Rule 53    Fator -> NUMBER
+Rule 54    Fator -> ( Exp )
+
+Terminals, with rules where they appear
+
+%                    : 48
+(                    : 8 24 26 28 29 30 31 39 40 41 42 54
+)                    : 8 24 26 28 29 30 31 39 40 41 42 54
+*                    : 46
++                    : 43
+,                    : 13
+-                    : 44
+/                    : 47
+;                    : 4 21 39 40 41 42
+<                    : 34
+=                    : 6 8 10 23 25 27
+>                    : 35
+COMP                 : 33
+DIF                  : 38
+ELSE                 : 31
+ID                   : 6 7 8 9 10 11 23 24 25 26 27 28 50 51 52
+IF                   : 30 31
+INT                  : 4 5
+MAIORIGUAL           : 37
+MENORIGUAL           : 36
+NUMBER               : 9 10 11 11 12 13 53
+PRINT                : 39 40
+PRINTLN              : 41 42
+READ                 : 8 24 26 28
+STRING               : 40 42
+WHILE                : 29
+[                    : 9 10 11 11 25 26 27 27 28 28 51 52 52
+]                    : 9 10 11 11 25 26 27 27 28 28 51 52 52
+error                : 
+{                    : 12 29 30 31 31
+}                    : 12 29 30 31 31
+
+Nonterminals, with rules where they appear
+
+Atribuicao           : 17
+AtribuicaoInt        : 21 22
+Ciclo                : 18
+Comparacao           : 29 30 31
+Comparador           : 32
+Condicional          : 19
+Declaracao           : 2
+DeclaracaoInt        : 4 5
+Declaracoes          : 1 2
+Exp                  : 6 23 25 25 26 27 27 27 28 28 32 32 39 41 43 44 51 52 52 54
+Fator                : 46 47 48 49
+Lista                : 10
+Operacao             : 15
+Operacoes            : 1 15 29 30 31 31
+Output               : 20
+Programa             : 0
+RLista               : 12 13
+Termo                : 43 44 45 46 47 48
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . Programa
+    (1) Programa -> . Declaracoes Operacoes
+    (2) Declaracoes -> . Declaracao Declaracoes
+    (3) Declaracoes -> .
+    (4) Declaracao -> . INT DeclaracaoInt ;
+    (5) Declaracao -> . INT DeclaracaoInt
+
+    WHILE           reduce using rule 3 (Declaracoes -> .)
+    IF              reduce using rule 3 (Declaracoes -> .)
+    PRINT           reduce using rule 3 (Declaracoes -> .)
+    PRINTLN         reduce using rule 3 (Declaracoes -> .)
+    ID              reduce using rule 3 (Declaracoes -> .)
+    READ            reduce using rule 3 (Declaracoes -> .)
+    $end            reduce using rule 3 (Declaracoes -> .)
+    INT             shift and go to state 4
+
+    Programa                       shift and go to state 1
+    Declaracoes                    shift and go to state 2
+    Declaracao                     shift and go to state 3
+
+state 1
+
+    (0) S' -> Programa .
+
+
+
+state 2
+
+    (1) Programa -> Declaracoes . Operacoes
+    (15) Operacoes -> . Operacao Operacoes
+    (16) Operacoes -> .
+    (17) Operacao -> . Atribuicao
+    (18) Operacao -> . Ciclo
+    (19) Operacao -> . Condicional
+    (20) Operacao -> . Output
+    (21) Atribuicao -> . AtribuicaoInt ;
+    (22) Atribuicao -> . AtribuicaoInt
+    (29) Ciclo -> . WHILE ( Comparacao ) { Operacoes }
+    (30) Condicional -> . IF ( Comparacao ) { Operacoes }
+    (31) Condicional -> . IF ( Comparacao ) { Operacoes } ELSE { Operacoes }
+    (39) Output -> . PRINT ( Exp ) ;
+    (40) Output -> . PRINT ( STRING ) ;
+    (41) Output -> . PRINTLN ( Exp ) ;
+    (42) Output -> . PRINTLN ( STRING ) ;
+    (23) AtribuicaoInt -> . ID = Exp
+    (24) AtribuicaoInt -> . READ ( ID )
+    (25) AtribuicaoInt -> . ID [ Exp ] = Exp
+    (26) AtribuicaoInt -> . READ ( ID [ Exp ] )
+    (27) AtribuicaoInt -> . ID [ Exp ] [ Exp ] = Exp
+    (28) AtribuicaoInt -> . READ ( ID [ Exp ] [ Exp ] )
+
+    $end            reduce using rule 16 (Operacoes -> .)
+    WHILE           shift and go to state 12
+    IF              shift and go to state 13
+    PRINT           shift and go to state 14
+    PRINTLN         shift and go to state 15
+    ID              shift and go to state 16
+    READ            shift and go to state 17
+
+    Operacoes                      shift and go to state 5
+    Operacao                       shift and go to state 6
+    Atribuicao                     shift and go to state 7
+    Ciclo                          shift and go to state 8
+    Condicional                    shift and go to state 9
+    Output                         shift and go to state 10
+    AtribuicaoInt                  shift and go to state 11
+
+state 3
+
+    (2) Declaracoes -> Declaracao . Declaracoes
+    (2) Declaracoes -> . Declaracao Declaracoes
+    (3) Declaracoes -> .
+    (4) Declaracao -> . INT DeclaracaoInt ;
+    (5) Declaracao -> . INT DeclaracaoInt
+
+    WHILE           reduce using rule 3 (Declaracoes -> .)
+    IF              reduce using rule 3 (Declaracoes -> .)
+    PRINT           reduce using rule 3 (Declaracoes -> .)
+    PRINTLN         reduce using rule 3 (Declaracoes -> .)
+    ID              reduce using rule 3 (Declaracoes -> .)
+    READ            reduce using rule 3 (Declaracoes -> .)
+    $end            reduce using rule 3 (Declaracoes -> .)
+    INT             shift and go to state 4
+
+    Declaracao                     shift and go to state 3
+    Declaracoes                    shift and go to state 18
+
+state 4
+
+    (4) Declaracao -> INT . DeclaracaoInt ;
+    (5) Declaracao -> INT . DeclaracaoInt
+    (6) DeclaracaoInt -> . ID = Exp
+    (7) DeclaracaoInt -> . ID
+    (8) DeclaracaoInt -> . ID = READ ( )
+    (9) DeclaracaoInt -> . ID [ NUMBER ]
+    (10) DeclaracaoInt -> . ID [ NUMBER ] = Lista
+    (11) DeclaracaoInt -> . ID [ NUMBER ] [ NUMBER ]
+
+    ID              shift and go to state 20
+
+    DeclaracaoInt                  shift and go to state 19
+
+state 5
+
+    (1) Programa -> Declaracoes Operacoes .
+
+    $end            reduce using rule 1 (Programa -> Declaracoes Operacoes .)
+
+
+state 6
+
+    (15) Operacoes -> Operacao . Operacoes
+    (15) Operacoes -> . Operacao Operacoes
+    (16) Operacoes -> .
+    (17) Operacao -> . Atribuicao
+    (18) Operacao -> . Ciclo
+    (19) Operacao -> . Condicional
+    (20) Operacao -> . Output
+    (21) Atribuicao -> . AtribuicaoInt ;
+    (22) Atribuicao -> . AtribuicaoInt
+    (29) Ciclo -> . WHILE ( Comparacao ) { Operacoes }
+    (30) Condicional -> . IF ( Comparacao ) { Operacoes }
+    (31) Condicional -> . IF ( Comparacao ) { Operacoes } ELSE { Operacoes }
+    (39) Output -> . PRINT ( Exp ) ;
+    (40) Output -> . PRINT ( STRING ) ;
+    (41) Output -> . PRINTLN ( Exp ) ;
+    (42) Output -> . PRINTLN ( STRING ) ;
+    (23) AtribuicaoInt -> . ID = Exp
+    (24) AtribuicaoInt -> . READ ( ID )
+    (25) AtribuicaoInt -> . ID [ Exp ] = Exp
+    (26) AtribuicaoInt -> . READ ( ID [ Exp ] )
+    (27) AtribuicaoInt -> . ID [ Exp ] [ Exp ] = Exp
+    (28) AtribuicaoInt -> . READ ( ID [ Exp ] [ Exp ] )
+
+    $end            reduce using rule 16 (Operacoes -> .)
+    }               reduce using rule 16 (Operacoes -> .)
+    WHILE           shift and go to state 12
+    IF              shift and go to state 13
+    PRINT           shift and go to state 14
+    PRINTLN         shift and go to state 15
+    ID              shift and go to state 16
+    READ            shift and go to state 17
+
+    Operacao                       shift and go to state 6
+    Operacoes                      shift and go to state 21
+    Atribuicao                     shift and go to state 7
+    Ciclo                          shift and go to state 8
+    Condicional                    shift and go to state 9
+    Output                         shift and go to state 10
+    AtribuicaoInt                  shift and go to state 11
+
+state 7
+
+    (17) Operacao -> Atribuicao .
+
+    WHILE           reduce using rule 17 (Operacao -> Atribuicao .)
+    IF              reduce using rule 17 (Operacao -> Atribuicao .)
+    PRINT           reduce using rule 17 (Operacao -> Atribuicao .)
+    PRINTLN         reduce using rule 17 (Operacao -> Atribuicao .)
+    ID              reduce using rule 17 (Operacao -> Atribuicao .)
+    READ            reduce using rule 17 (Operacao -> Atribuicao .)
+    $end            reduce using rule 17 (Operacao -> Atribuicao .)
+    }               reduce using rule 17 (Operacao -> Atribuicao .)
+
+
+state 8
+
+    (18) Operacao -> Ciclo .
+
+    WHILE           reduce using rule 18 (Operacao -> Ciclo .)
+    IF              reduce using rule 18 (Operacao -> Ciclo .)
+    PRINT           reduce using rule 18 (Operacao -> Ciclo .)
+    PRINTLN         reduce using rule 18 (Operacao -> Ciclo .)
+    ID              reduce using rule 18 (Operacao -> Ciclo .)
+    READ            reduce using rule 18 (Operacao -> Ciclo .)
+    $end            reduce using rule 18 (Operacao -> Ciclo .)
+    }               reduce using rule 18 (Operacao -> Ciclo .)
+
+
+state 9
+
+    (19) Operacao -> Condicional .
+
+    WHILE           reduce using rule 19 (Operacao -> Condicional .)
+    IF              reduce using rule 19 (Operacao -> Condicional .)
+    PRINT           reduce using rule 19 (Operacao -> Condicional .)
+    PRINTLN         reduce using rule 19 (Operacao -> Condicional .)
+    ID              reduce using rule 19 (Operacao -> Condicional .)
+    READ            reduce using rule 19 (Operacao -> Condicional .)
+    $end            reduce using rule 19 (Operacao -> Condicional .)
+    }               reduce using rule 19 (Operacao -> Condicional .)
+
+
+state 10
+
+    (20) Operacao -> Output .
+
+    WHILE           reduce using rule 20 (Operacao -> Output .)
+    IF              reduce using rule 20 (Operacao -> Output .)
+    PRINT           reduce using rule 20 (Operacao -> Output .)
+    PRINTLN         reduce using rule 20 (Operacao -> Output .)
+    ID              reduce using rule 20 (Operacao -> Output .)
+    READ            reduce using rule 20 (Operacao -> Output .)
+    $end            reduce using rule 20 (Operacao -> Output .)
+    }               reduce using rule 20 (Operacao -> Output .)
+
+
+state 11
+
+    (21) Atribuicao -> AtribuicaoInt . ;
+    (22) Atribuicao -> AtribuicaoInt .
+
+    ;               shift and go to state 22
+    WHILE           reduce using rule 22 (Atribuicao -> AtribuicaoInt .)
+    IF              reduce using rule 22 (Atribuicao -> AtribuicaoInt .)
+    PRINT           reduce using rule 22 (Atribuicao -> AtribuicaoInt .)
+    PRINTLN         reduce using rule 22 (Atribuicao -> AtribuicaoInt .)
+    ID              reduce using rule 22 (Atribuicao -> AtribuicaoInt .)
+    READ            reduce using rule 22 (Atribuicao -> AtribuicaoInt .)
+    $end            reduce using rule 22 (Atribuicao -> AtribuicaoInt .)
+    }               reduce using rule 22 (Atribuicao -> AtribuicaoInt .)
+
+
+state 12
+
+    (29) Ciclo -> WHILE . ( Comparacao ) { Operacoes }
+
+    (               shift and go to state 23
+
+
+state 13
+
+    (30) Condicional -> IF . ( Comparacao ) { Operacoes }
+    (31) Condicional -> IF . ( Comparacao ) { Operacoes } ELSE { Operacoes }
+
+    (               shift and go to state 24
+
+
+state 14
+
+    (39) Output -> PRINT . ( Exp ) ;
+    (40) Output -> PRINT . ( STRING ) ;
+
+    (               shift and go to state 25
+
+
+state 15
+
+    (41) Output -> PRINTLN . ( Exp ) ;
+    (42) Output -> PRINTLN . ( STRING ) ;
+
+    (               shift and go to state 26
+
+
+state 16
+
+    (23) AtribuicaoInt -> ID . = Exp
+    (25) AtribuicaoInt -> ID . [ Exp ] = Exp
+    (27) AtribuicaoInt -> ID . [ Exp ] [ Exp ] = Exp
+
+    =               shift and go to state 27
+    [               shift and go to state 28
+
+
+state 17
+
+    (24) AtribuicaoInt -> READ . ( ID )
+    (26) AtribuicaoInt -> READ . ( ID [ Exp ] )
+    (28) AtribuicaoInt -> READ . ( ID [ Exp ] [ Exp ] )
+
+    (               shift and go to state 29
+
+
+state 18
+
+    (2) Declaracoes -> Declaracao Declaracoes .
+
+    WHILE           reduce using rule 2 (Declaracoes -> Declaracao Declaracoes .)
+    IF              reduce using rule 2 (Declaracoes -> Declaracao Declaracoes .)
+    PRINT           reduce using rule 2 (Declaracoes -> Declaracao Declaracoes .)
+    PRINTLN         reduce using rule 2 (Declaracoes -> Declaracao Declaracoes .)
+    ID              reduce using rule 2 (Declaracoes -> Declaracao Declaracoes .)
+    READ            reduce using rule 2 (Declaracoes -> Declaracao Declaracoes .)
+    $end            reduce using rule 2 (Declaracoes -> Declaracao Declaracoes .)
+
+
+state 19
+
+    (4) Declaracao -> INT DeclaracaoInt . ;
+    (5) Declaracao -> INT DeclaracaoInt .
+
+    ;               shift and go to state 30
+    INT             reduce using rule 5 (Declaracao -> INT DeclaracaoInt .)
+    WHILE           reduce using rule 5 (Declaracao -> INT DeclaracaoInt .)
+    IF              reduce using rule 5 (Declaracao -> INT DeclaracaoInt .)
+    PRINT           reduce using rule 5 (Declaracao -> INT DeclaracaoInt .)
+    PRINTLN         reduce using rule 5 (Declaracao -> INT DeclaracaoInt .)
+    ID              reduce using rule 5 (Declaracao -> INT DeclaracaoInt .)
+    READ            reduce using rule 5 (Declaracao -> INT DeclaracaoInt .)
+    $end            reduce using rule 5 (Declaracao -> INT DeclaracaoInt .)
+
+
+state 20
+
+    (6) DeclaracaoInt -> ID . = Exp
+    (7) DeclaracaoInt -> ID .
+    (8) DeclaracaoInt -> ID . = READ ( )
+    (9) DeclaracaoInt -> ID . [ NUMBER ]
+    (10) DeclaracaoInt -> ID . [ NUMBER ] = Lista
+    (11) DeclaracaoInt -> ID . [ NUMBER ] [ NUMBER ]
+
+    =               shift and go to state 31
+    ;               reduce using rule 7 (DeclaracaoInt -> ID .)
+    INT             reduce using rule 7 (DeclaracaoInt -> ID .)
+    WHILE           reduce using rule 7 (DeclaracaoInt -> ID .)
+    IF              reduce using rule 7 (DeclaracaoInt -> ID .)
+    PRINT           reduce using rule 7 (DeclaracaoInt -> ID .)
+    PRINTLN         reduce using rule 7 (DeclaracaoInt -> ID .)
+    ID              reduce using rule 7 (DeclaracaoInt -> ID .)
+    READ            reduce using rule 7 (DeclaracaoInt -> ID .)
+    $end            reduce using rule 7 (DeclaracaoInt -> ID .)
+    [               shift and go to state 32
+
+
+state 21
+
+    (15) Operacoes -> Operacao Operacoes .
+
+    $end            reduce using rule 15 (Operacoes -> Operacao Operacoes .)
+    }               reduce using rule 15 (Operacoes -> Operacao Operacoes .)
+
+
+state 22
+
+    (21) Atribuicao -> AtribuicaoInt ; .
+
+    WHILE           reduce using rule 21 (Atribuicao -> AtribuicaoInt ; .)
+    IF              reduce using rule 21 (Atribuicao -> AtribuicaoInt ; .)
+    PRINT           reduce using rule 21 (Atribuicao -> AtribuicaoInt ; .)
+    PRINTLN         reduce using rule 21 (Atribuicao -> AtribuicaoInt ; .)
+    ID              reduce using rule 21 (Atribuicao -> AtribuicaoInt ; .)
+    READ            reduce using rule 21 (Atribuicao -> AtribuicaoInt ; .)
+    $end            reduce using rule 21 (Atribuicao -> AtribuicaoInt ; .)
+    }               reduce using rule 21 (Atribuicao -> AtribuicaoInt ; .)
+
+
+state 23
+
+    (29) Ciclo -> WHILE ( . Comparacao ) { Operacoes }
+    (32) Comparacao -> . Exp Comparador Exp
+    (43) Exp -> . Exp + Termo
+    (44) Exp -> . Exp - Termo
+    (45) Exp -> . Termo
+    (46) Termo -> . Termo * Fator
+    (47) Termo -> . Termo / Fator
+    (48) Termo -> . Termo % Fator
+    (49) Termo -> . Fator
+    (50) Fator -> . ID
+    (51) Fator -> . ID [ Exp ]
+    (52) Fator -> . ID [ Exp ] [ Exp ]
+    (53) Fator -> . NUMBER
+    (54) Fator -> . ( Exp )
+
+    ID              shift and go to state 38
+    NUMBER          shift and go to state 39
+    (               shift and go to state 33
+
+    Comparacao                     shift and go to state 34
+    Exp                            shift and go to state 35
+    Termo                          shift and go to state 36
+    Fator                          shift and go to state 37
+
+state 24
+
+    (30) Condicional -> IF ( . Comparacao ) { Operacoes }
+    (31) Condicional -> IF ( . Comparacao ) { Operacoes } ELSE { Operacoes }
+    (32) Comparacao -> . Exp Comparador Exp
+    (43) Exp -> . Exp + Termo
+    (44) Exp -> . Exp - Termo
+    (45) Exp -> . Termo
+    (46) Termo -> . Termo * Fator
+    (47) Termo -> . Termo / Fator
+    (48) Termo -> . Termo % Fator
+    (49) Termo -> . Fator
+    (50) Fator -> . ID
+    (51) Fator -> . ID [ Exp ]
+    (52) Fator -> . ID [ Exp ] [ Exp ]
+    (53) Fator -> . NUMBER
+    (54) Fator -> . ( Exp )
+
+    ID              shift and go to state 38
+    NUMBER          shift and go to state 39
+    (               shift and go to state 33
+
+    Comparacao                     shift and go to state 40
+    Exp                            shift and go to state 35
+    Termo                          shift and go to state 36
+    Fator                          shift and go to state 37
+
+state 25
+
+    (39) Output -> PRINT ( . Exp ) ;
+    (40) Output -> PRINT ( . STRING ) ;
+    (43) Exp -> . Exp + Termo
+    (44) Exp -> . Exp - Termo
+    (45) Exp -> . Termo
+    (46) Termo -> . Termo * Fator
+    (47) Termo -> . Termo / Fator
+    (48) Termo -> . Termo % Fator
+    (49) Termo -> . Fator
+    (50) Fator -> . ID
+    (51) Fator -> . ID [ Exp ]
+    (52) Fator -> . ID [ Exp ] [ Exp ]
+    (53) Fator -> . NUMBER
+    (54) Fator -> . ( Exp )
+
+    STRING          shift and go to state 42
+    ID              shift and go to state 38
+    NUMBER          shift and go to state 39
+    (               shift and go to state 33
+
+    Exp                            shift and go to state 41
+    Termo                          shift and go to state 36
+    Fator                          shift and go to state 37
+
+state 26
+
+    (41) Output -> PRINTLN ( . Exp ) ;
+    (42) Output -> PRINTLN ( . STRING ) ;
+    (43) Exp -> . Exp + Termo
+    (44) Exp -> . Exp - Termo
+    (45) Exp -> . Termo
+    (46) Termo -> . Termo * Fator
+    (47) Termo -> . Termo / Fator
+    (48) Termo -> . Termo % Fator
+    (49) Termo -> . Fator
+    (50) Fator -> . ID
+    (51) Fator -> . ID [ Exp ]
+    (52) Fator -> . ID [ Exp ] [ Exp ]
+    (53) Fator -> . NUMBER
+    (54) Fator -> . ( Exp )
+
+    STRING          shift and go to state 44
+    ID              shift and go to state 38
+    NUMBER          shift and go to state 39
+    (               shift and go to state 33
+
+    Exp                            shift and go to state 43
+    Termo                          shift and go to state 36
+    Fator                          shift and go to state 37
+
+state 27
+
+    (23) AtribuicaoInt -> ID = . Exp
+    (43) Exp -> . Exp + Termo
+    (44) Exp -> . Exp - Termo
+    (45) Exp -> . Termo
+    (46) Termo -> . Termo * Fator
+    (47) Termo -> . Termo / Fator
+    (48) Termo -> . Termo % Fator
+    (49) Termo -> . Fator
+    (50) Fator -> . ID
+    (51) Fator -> . ID [ Exp ]
+    (52) Fator -> . ID [ Exp ] [ Exp ]
+    (53) Fator -> . NUMBER
+    (54) Fator -> . ( Exp )
+
+    ID              shift and go to state 38
+    NUMBER          shift and go to state 39
+    (               shift and go to state 33
+
+    Exp                            shift and go to state 45
+    Termo                          shift and go to state 36
+    Fator                          shift and go to state 37
+
+state 28
+
+    (25) AtribuicaoInt -> ID [ . Exp ] = Exp
+    (27) AtribuicaoInt -> ID [ . Exp ] [ Exp ] = Exp
+    (43) Exp -> . Exp + Termo
+    (44) Exp -> . Exp - Termo
+    (45) Exp -> . Termo
+    (46) Termo -> . Termo * Fator
+    (47) Termo -> . Termo / Fator
+    (48) Termo -> . Termo % Fator
+    (49) Termo -> . Fator
+    (50) Fator -> . ID
+    (51) Fator -> . ID [ Exp ]
+    (52) Fator -> . ID [ Exp ] [ Exp ]
+    (53) Fator -> . NUMBER
+    (54) Fator -> . ( Exp )
+
+    ID              shift and go to state 38
+    NUMBER          shift and go to state 39
+    (               shift and go to state 33
+
+    Exp                            shift and go to state 46
+    Termo                          shift and go to state 36
+    Fator                          shift and go to state 37
+
+state 29
+
+    (24) AtribuicaoInt -> READ ( . ID )
+    (26) AtribuicaoInt -> READ ( . ID [ Exp ] )
+    (28) AtribuicaoInt -> READ ( . ID [ Exp ] [ Exp ] )
+
+    ID              shift and go to state 47
+
+
+state 30
+
+    (4) Declaracao -> INT DeclaracaoInt ; .
+
+    INT             reduce using rule 4 (Declaracao -> INT DeclaracaoInt ; .)
+    WHILE           reduce using rule 4 (Declaracao -> INT DeclaracaoInt ; .)
+    IF              reduce using rule 4 (Declaracao -> INT DeclaracaoInt ; .)
+    PRINT           reduce using rule 4 (Declaracao -> INT DeclaracaoInt ; .)
+    PRINTLN         reduce using rule 4 (Declaracao -> INT DeclaracaoInt ; .)
+    ID              reduce using rule 4 (Declaracao -> INT DeclaracaoInt ; .)
+    READ            reduce using rule 4 (Declaracao -> INT DeclaracaoInt ; .)
+    $end            reduce using rule 4 (Declaracao -> INT DeclaracaoInt ; .)
+
+
+state 31
+
+    (6) DeclaracaoInt -> ID = . Exp
+    (8) DeclaracaoInt -> ID = . READ ( )
+    (43) Exp -> . Exp + Termo
+    (44) Exp -> . Exp - Termo
+    (45) Exp -> . Termo
+    (46) Termo -> . Termo * Fator
+    (47) Termo -> . Termo / Fator
+    (48) Termo -> . Termo % Fator
+    (49) Termo -> . Fator
+    (50) Fator -> . ID
+    (51) Fator -> . ID [ Exp ]
+    (52) Fator -> . ID [ Exp ] [ Exp ]
+    (53) Fator -> . NUMBER
+    (54) Fator -> . ( Exp )
+
+    READ            shift and go to state 49
+    ID              shift and go to state 38
+    NUMBER          shift and go to state 39
+    (               shift and go to state 33
+
+    Exp                            shift and go to state 48
+    Termo                          shift and go to state 36
+    Fator                          shift and go to state 37
+
+state 32
+
+    (9) DeclaracaoInt -> ID [ . NUMBER ]
+    (10) DeclaracaoInt -> ID [ . NUMBER ] = Lista
+    (11) DeclaracaoInt -> ID [ . NUMBER ] [ NUMBER ]
+
+    NUMBER          shift and go to state 50
+
+
+state 33
+
+    (54) Fator -> ( . Exp )
+    (43) Exp -> . Exp + Termo
+    (44) Exp -> . Exp - Termo
+    (45) Exp -> . Termo
+    (46) Termo -> . Termo * Fator
+    (47) Termo -> . Termo / Fator
+    (48) Termo -> . Termo % Fator
+    (49) Termo -> . Fator
+    (50) Fator -> . ID
+    (51) Fator -> . ID [ Exp ]
+    (52) Fator -> . ID [ Exp ] [ Exp ]
+    (53) Fator -> . NUMBER
+    (54) Fator -> . ( Exp )
+
+    ID              shift and go to state 38
+    NUMBER          shift and go to state 39
+    (               shift and go to state 33
+
+    Exp                            shift and go to state 51
+    Termo                          shift and go to state 36
+    Fator                          shift and go to state 37
+
+state 34
+
+    (29) Ciclo -> WHILE ( Comparacao . ) { Operacoes }
+
+    )               shift and go to state 52
+
+
+state 35
+
+    (32) Comparacao -> Exp . Comparador Exp
+    (43) Exp -> Exp . + Termo
+    (44) Exp -> Exp . - Termo
+    (33) Comparador -> . COMP
+    (34) Comparador -> . <
+    (35) Comparador -> . >
+    (36) Comparador -> . MENORIGUAL
+    (37) Comparador -> . MAIORIGUAL
+    (38) Comparador -> . DIF
+
+    +               shift and go to state 54
+    -               shift and go to state 55
+    COMP            shift and go to state 56
+    <               shift and go to state 57
+    >               shift and go to state 58
+    MENORIGUAL      shift and go to state 59
+    MAIORIGUAL      shift and go to state 60
+    DIF             shift and go to state 61
+
+    Comparador                     shift and go to state 53
+
+state 36
+
+    (45) Exp -> Termo .
+    (46) Termo -> Termo . * Fator
+    (47) Termo -> Termo . / Fator
+    (48) Termo -> Termo . % Fator
+
+    +               reduce using rule 45 (Exp -> Termo .)
+    -               reduce using rule 45 (Exp -> Termo .)
+    COMP            reduce using rule 45 (Exp -> Termo .)
+    <               reduce using rule 45 (Exp -> Termo .)
+    >               reduce using rule 45 (Exp -> Termo .)
+    MENORIGUAL      reduce using rule 45 (Exp -> Termo .)
+    MAIORIGUAL      reduce using rule 45 (Exp -> Termo .)
+    DIF             reduce using rule 45 (Exp -> Termo .)
+    )               reduce using rule 45 (Exp -> Termo .)
+    ;               reduce using rule 45 (Exp -> Termo .)
+    WHILE           reduce using rule 45 (Exp -> Termo .)
+    IF              reduce using rule 45 (Exp -> Termo .)
+    PRINT           reduce using rule 45 (Exp -> Termo .)
+    PRINTLN         reduce using rule 45 (Exp -> Termo .)
+    ID              reduce using rule 45 (Exp -> Termo .)
+    READ            reduce using rule 45 (Exp -> Termo .)
+    $end            reduce using rule 45 (Exp -> Termo .)
+    }               reduce using rule 45 (Exp -> Termo .)
+    ]               reduce using rule 45 (Exp -> Termo .)
+    INT             reduce using rule 45 (Exp -> Termo .)
+    *               shift and go to state 62
+    /               shift and go to state 63
+    %               shift and go to state 64
+
+
+state 37
+
+    (49) Termo -> Fator .
+
+    *               reduce using rule 49 (Termo -> Fator .)
+    /               reduce using rule 49 (Termo -> Fator .)
+    %               reduce using rule 49 (Termo -> Fator .)
+    +               reduce using rule 49 (Termo -> Fator .)
+    -               reduce using rule 49 (Termo -> Fator .)
+    COMP            reduce using rule 49 (Termo -> Fator .)
+    <               reduce using rule 49 (Termo -> Fator .)
+    >               reduce using rule 49 (Termo -> Fator .)
+    MENORIGUAL      reduce using rule 49 (Termo -> Fator .)
+    MAIORIGUAL      reduce using rule 49 (Termo -> Fator .)
+    DIF             reduce using rule 49 (Termo -> Fator .)
+    )               reduce using rule 49 (Termo -> Fator .)
+    ;               reduce using rule 49 (Termo -> Fator .)
+    WHILE           reduce using rule 49 (Termo -> Fator .)
+    IF              reduce using rule 49 (Termo -> Fator .)
+    PRINT           reduce using rule 49 (Termo -> Fator .)
+    PRINTLN         reduce using rule 49 (Termo -> Fator .)
+    ID              reduce using rule 49 (Termo -> Fator .)
+    READ            reduce using rule 49 (Termo -> Fator .)
+    $end            reduce using rule 49 (Termo -> Fator .)
+    }               reduce using rule 49 (Termo -> Fator .)
+    ]               reduce using rule 49 (Termo -> Fator .)
+    INT             reduce using rule 49 (Termo -> Fator .)
+
+
+state 38
+
+    (50) Fator -> ID .
+    (51) Fator -> ID . [ Exp ]
+    (52) Fator -> ID . [ Exp ] [ Exp ]
+
+    *               reduce using rule 50 (Fator -> ID .)
+    /               reduce using rule 50 (Fator -> ID .)
+    %               reduce using rule 50 (Fator -> ID .)
+    +               reduce using rule 50 (Fator -> ID .)
+    -               reduce using rule 50 (Fator -> ID .)
+    COMP            reduce using rule 50 (Fator -> ID .)
+    <               reduce using rule 50 (Fator -> ID .)
+    >               reduce using rule 50 (Fator -> ID .)
+    MENORIGUAL      reduce using rule 50 (Fator -> ID .)
+    MAIORIGUAL      reduce using rule 50 (Fator -> ID .)
+    DIF             reduce using rule 50 (Fator -> ID .)
+    )               reduce using rule 50 (Fator -> ID .)
+    ;               reduce using rule 50 (Fator -> ID .)
+    WHILE           reduce using rule 50 (Fator -> ID .)
+    IF              reduce using rule 50 (Fator -> ID .)
+    PRINT           reduce using rule 50 (Fator -> ID .)
+    PRINTLN         reduce using rule 50 (Fator -> ID .)
+    ID              reduce using rule 50 (Fator -> ID .)
+    READ            reduce using rule 50 (Fator -> ID .)
+    $end            reduce using rule 50 (Fator -> ID .)
+    }               reduce using rule 50 (Fator -> ID .)
+    ]               reduce using rule 50 (Fator -> ID .)
+    INT             reduce using rule 50 (Fator -> ID .)
+    [               shift and go to state 65
+
+
+state 39
+
+    (53) Fator -> NUMBER .
+
+    *               reduce using rule 53 (Fator -> NUMBER .)
+    /               reduce using rule 53 (Fator -> NUMBER .)
+    %               reduce using rule 53 (Fator -> NUMBER .)
+    +               reduce using rule 53 (Fator -> NUMBER .)
+    -               reduce using rule 53 (Fator -> NUMBER .)
+    COMP            reduce using rule 53 (Fator -> NUMBER .)
+    <               reduce using rule 53 (Fator -> NUMBER .)
+    >               reduce using rule 53 (Fator -> NUMBER .)
+    MENORIGUAL      reduce using rule 53 (Fator -> NUMBER .)
+    MAIORIGUAL      reduce using rule 53 (Fator -> NUMBER .)
+    DIF             reduce using rule 53 (Fator -> NUMBER .)
+    )               reduce using rule 53 (Fator -> NUMBER .)
+    ;               reduce using rule 53 (Fator -> NUMBER .)
+    WHILE           reduce using rule 53 (Fator -> NUMBER .)
+    IF              reduce using rule 53 (Fator -> NUMBER .)
+    PRINT           reduce using rule 53 (Fator -> NUMBER .)
+    PRINTLN         reduce using rule 53 (Fator -> NUMBER .)
+    ID              reduce using rule 53 (Fator -> NUMBER .)
+    READ            reduce using rule 53 (Fator -> NUMBER .)
+    $end            reduce using rule 53 (Fator -> NUMBER .)
+    }               reduce using rule 53 (Fator -> NUMBER .)
+    ]               reduce using rule 53 (Fator -> NUMBER .)
+    INT             reduce using rule 53 (Fator -> NUMBER .)
+
+
+state 40
+
+    (30) Condicional -> IF ( Comparacao . ) { Operacoes }
+    (31) Condicional -> IF ( Comparacao . ) { Operacoes } ELSE { Operacoes }
+
+    )               shift and go to state 66
+
+
+state 41
+
+    (39) Output -> PRINT ( Exp . ) ;
+    (43) Exp -> Exp . + Termo
+    (44) Exp -> Exp . - Termo
+
+    )               shift and go to state 67
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 42
+
+    (40) Output -> PRINT ( STRING . ) ;
+
+    )               shift and go to state 68
+
+
+state 43
+
+    (41) Output -> PRINTLN ( Exp . ) ;
+    (43) Exp -> Exp . + Termo
+    (44) Exp -> Exp . - Termo
+
+    )               shift and go to state 69
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 44
+
+    (42) Output -> PRINTLN ( STRING . ) ;
+
+    )               shift and go to state 70
+
+
+state 45
+
+    (23) AtribuicaoInt -> ID = Exp .
+    (43) Exp -> Exp . + Termo
+    (44) Exp -> Exp . - Termo
+
+    ;               reduce using rule 23 (AtribuicaoInt -> ID = Exp .)
+    WHILE           reduce using rule 23 (AtribuicaoInt -> ID = Exp .)
+    IF              reduce using rule 23 (AtribuicaoInt -> ID = Exp .)
+    PRINT           reduce using rule 23 (AtribuicaoInt -> ID = Exp .)
+    PRINTLN         reduce using rule 23 (AtribuicaoInt -> ID = Exp .)
+    ID              reduce using rule 23 (AtribuicaoInt -> ID = Exp .)
+    READ            reduce using rule 23 (AtribuicaoInt -> ID = Exp .)
+    $end            reduce using rule 23 (AtribuicaoInt -> ID = Exp .)
+    }               reduce using rule 23 (AtribuicaoInt -> ID = Exp .)
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 46
+
+    (25) AtribuicaoInt -> ID [ Exp . ] = Exp
+    (27) AtribuicaoInt -> ID [ Exp . ] [ Exp ] = Exp
+    (43) Exp -> Exp . + Termo
+    (44) Exp -> Exp . - Termo
+
+    ]               shift and go to state 71
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 47
+
+    (24) AtribuicaoInt -> READ ( ID . )
+    (26) AtribuicaoInt -> READ ( ID . [ Exp ] )
+    (28) AtribuicaoInt -> READ ( ID . [ Exp ] [ Exp ] )
+
+    )               shift and go to state 72
+    [               shift and go to state 73
+
+
+state 48
+
+    (6) DeclaracaoInt -> ID = Exp .
+    (43) Exp -> Exp . + Termo
+    (44) Exp -> Exp . - Termo
+
+    ;               reduce using rule 6 (DeclaracaoInt -> ID = Exp .)
+    INT             reduce using rule 6 (DeclaracaoInt -> ID = Exp .)
+    WHILE           reduce using rule 6 (DeclaracaoInt -> ID = Exp .)
+    IF              reduce using rule 6 (DeclaracaoInt -> ID = Exp .)
+    PRINT           reduce using rule 6 (DeclaracaoInt -> ID = Exp .)
+    PRINTLN         reduce using rule 6 (DeclaracaoInt -> ID = Exp .)
+    ID              reduce using rule 6 (DeclaracaoInt -> ID = Exp .)
+    READ            reduce using rule 6 (DeclaracaoInt -> ID = Exp .)
+    $end            reduce using rule 6 (DeclaracaoInt -> ID = Exp .)
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 49
+
+    (8) DeclaracaoInt -> ID = READ . ( )
+
+    (               shift and go to state 74
+
+
+state 50
+
+    (9) DeclaracaoInt -> ID [ NUMBER . ]
+    (10) DeclaracaoInt -> ID [ NUMBER . ] = Lista
+    (11) DeclaracaoInt -> ID [ NUMBER . ] [ NUMBER ]
+
+    ]               shift and go to state 75
+
+
+state 51
+
+    (54) Fator -> ( Exp . )
+    (43) Exp -> Exp . + Termo
+    (44) Exp -> Exp . - Termo
+
+    )               shift and go to state 76
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 52
+
+    (29) Ciclo -> WHILE ( Comparacao ) . { Operacoes }
+
+    {               shift and go to state 77
+
+
+state 53
+
+    (32) Comparacao -> Exp Comparador . Exp
+    (43) Exp -> . Exp + Termo
+    (44) Exp -> . Exp - Termo
+    (45) Exp -> . Termo
+    (46) Termo -> . Termo * Fator
+    (47) Termo -> . Termo / Fator
+    (48) Termo -> . Termo % Fator
+    (49) Termo -> . Fator
+    (50) Fator -> . ID
+    (51) Fator -> . ID [ Exp ]
+    (52) Fator -> . ID [ Exp ] [ Exp ]
+    (53) Fator -> . NUMBER
+    (54) Fator -> . ( Exp )
+
+    ID              shift and go to state 38
+    NUMBER          shift and go to state 39
+    (               shift and go to state 33
+
+    Exp                            shift and go to state 78
+    Termo                          shift and go to state 36
+    Fator                          shift and go to state 37
+
+state 54
+
+    (43) Exp -> Exp + . Termo
+    (46) Termo -> . Termo * Fator
+    (47) Termo -> . Termo / Fator
+    (48) Termo -> . Termo % Fator
+    (49) Termo -> . Fator
+    (50) Fator -> . ID
+    (51) Fator -> . ID [ Exp ]
+    (52) Fator -> . ID [ Exp ] [ Exp ]
+    (53) Fator -> . NUMBER
+    (54) Fator -> . ( Exp )
+
+    ID              shift and go to state 38
+    NUMBER          shift and go to state 39
+    (               shift and go to state 33
+
+    Termo                          shift and go to state 79
+    Fator                          shift and go to state 37
+
+state 55
+
+    (44) Exp -> Exp - . Termo
+    (46) Termo -> . Termo * Fator
+    (47) Termo -> . Termo / Fator
+    (48) Termo -> . Termo % Fator
+    (49) Termo -> . Fator
+    (50) Fator -> . ID
+    (51) Fator -> . ID [ Exp ]
+    (52) Fator -> . ID [ Exp ] [ Exp ]
+    (53) Fator -> . NUMBER
+    (54) Fator -> . ( Exp )
+
+    ID              shift and go to state 38
+    NUMBER          shift and go to state 39
+    (               shift and go to state 33
+
+    Termo                          shift and go to state 80
+    Fator                          shift and go to state 37
+
+state 56
+
+    (33) Comparador -> COMP .
+
+    ID              reduce using rule 33 (Comparador -> COMP .)
+    NUMBER          reduce using rule 33 (Comparador -> COMP .)
+    (               reduce using rule 33 (Comparador -> COMP .)
+
+
+state 57
+
+    (34) Comparador -> < .
+
+    ID              reduce using rule 34 (Comparador -> < .)
+    NUMBER          reduce using rule 34 (Comparador -> < .)
+    (               reduce using rule 34 (Comparador -> < .)
+
+
+state 58
+
+    (35) Comparador -> > .
+
+    ID              reduce using rule 35 (Comparador -> > .)
+    NUMBER          reduce using rule 35 (Comparador -> > .)
+    (               reduce using rule 35 (Comparador -> > .)
+
+
+state 59
+
+    (36) Comparador -> MENORIGUAL .
+
+    ID              reduce using rule 36 (Comparador -> MENORIGUAL .)
+    NUMBER          reduce using rule 36 (Comparador -> MENORIGUAL .)
+    (               reduce using rule 36 (Comparador -> MENORIGUAL .)
+
+
+state 60
+
+    (37) Comparador -> MAIORIGUAL .
+
+    ID              reduce using rule 37 (Comparador -> MAIORIGUAL .)
+    NUMBER          reduce using rule 37 (Comparador -> MAIORIGUAL .)
+    (               reduce using rule 37 (Comparador -> MAIORIGUAL .)
+
+
+state 61
+
+    (38) Comparador -> DIF .
+
+    ID              reduce using rule 38 (Comparador -> DIF .)
+    NUMBER          reduce using rule 38 (Comparador -> DIF .)
+    (               reduce using rule 38 (Comparador -> DIF .)
+
+
+state 62
+
+    (46) Termo -> Termo * . Fator
+    (50) Fator -> . ID
+    (51) Fator -> . ID [ Exp ]
+    (52) Fator -> . ID [ Exp ] [ Exp ]
+    (53) Fator -> . NUMBER
+    (54) Fator -> . ( Exp )
+
+    ID              shift and go to state 38
+    NUMBER          shift and go to state 39
+    (               shift and go to state 33
+
+    Fator                          shift and go to state 81
+
+state 63
+
+    (47) Termo -> Termo / . Fator
+    (50) Fator -> . ID
+    (51) Fator -> . ID [ Exp ]
+    (52) Fator -> . ID [ Exp ] [ Exp ]
+    (53) Fator -> . NUMBER
+    (54) Fator -> . ( Exp )
+
+    ID              shift and go to state 38
+    NUMBER          shift and go to state 39
+    (               shift and go to state 33
+
+    Fator                          shift and go to state 82
+
+state 64
+
+    (48) Termo -> Termo % . Fator
+    (50) Fator -> . ID
+    (51) Fator -> . ID [ Exp ]
+    (52) Fator -> . ID [ Exp ] [ Exp ]
+    (53) Fator -> . NUMBER
+    (54) Fator -> . ( Exp )
+
+    ID              shift and go to state 38
+    NUMBER          shift and go to state 39
+    (               shift and go to state 33
+
+    Fator                          shift and go to state 83
+
+state 65
+
+    (51) Fator -> ID [ . Exp ]
+    (52) Fator -> ID [ . Exp ] [ Exp ]
+    (43) Exp -> . Exp + Termo
+    (44) Exp -> . Exp - Termo
+    (45) Exp -> . Termo
+    (46) Termo -> . Termo * Fator
+    (47) Termo -> . Termo / Fator
+    (48) Termo -> . Termo % Fator
+    (49) Termo -> . Fator
+    (50) Fator -> . ID
+    (51) Fator -> . ID [ Exp ]
+    (52) Fator -> . ID [ Exp ] [ Exp ]
+    (53) Fator -> . NUMBER
+    (54) Fator -> . ( Exp )
+
+    ID              shift and go to state 38
+    NUMBER          shift and go to state 39
+    (               shift and go to state 33
+
+    Exp                            shift and go to state 84
+    Termo                          shift and go to state 36
+    Fator                          shift and go to state 37
+
+state 66
+
+    (30) Condicional -> IF ( Comparacao ) . { Operacoes }
+    (31) Condicional -> IF ( Comparacao ) . { Operacoes } ELSE { Operacoes }
+
+    {               shift and go to state 85
+
+
+state 67
+
+    (39) Output -> PRINT ( Exp ) . ;
+
+    ;               shift and go to state 86
+
+
+state 68
+
+    (40) Output -> PRINT ( STRING ) . ;
+
+    ;               shift and go to state 87
+
+
+state 69
+
+    (41) Output -> PRINTLN ( Exp ) . ;
+
+    ;               shift and go to state 88
+
+
+state 70
+
+    (42) Output -> PRINTLN ( STRING ) . ;
+
+    ;               shift and go to state 89
+
+
+state 71
+
+    (25) AtribuicaoInt -> ID [ Exp ] . = Exp
+    (27) AtribuicaoInt -> ID [ Exp ] . [ Exp ] = Exp
+
+    =               shift and go to state 91
+    [               shift and go to state 90
+
+
+state 72
+
+    (24) AtribuicaoInt -> READ ( ID ) .
+
+    ;               reduce using rule 24 (AtribuicaoInt -> READ ( ID ) .)
+    WHILE           reduce using rule 24 (AtribuicaoInt -> READ ( ID ) .)
+    IF              reduce using rule 24 (AtribuicaoInt -> READ ( ID ) .)
+    PRINT           reduce using rule 24 (AtribuicaoInt -> READ ( ID ) .)
+    PRINTLN         reduce using rule 24 (AtribuicaoInt -> READ ( ID ) .)
+    ID              reduce using rule 24 (AtribuicaoInt -> READ ( ID ) .)
+    READ            reduce using rule 24 (AtribuicaoInt -> READ ( ID ) .)
+    $end            reduce using rule 24 (AtribuicaoInt -> READ ( ID ) .)
+    }               reduce using rule 24 (AtribuicaoInt -> READ ( ID ) .)
+
+
+state 73
+
+    (26) AtribuicaoInt -> READ ( ID [ . Exp ] )
+    (28) AtribuicaoInt -> READ ( ID [ . Exp ] [ Exp ] )
+    (43) Exp -> . Exp + Termo
+    (44) Exp -> . Exp - Termo
+    (45) Exp -> . Termo
+    (46) Termo -> . Termo * Fator
+    (47) Termo -> . Termo / Fator
+    (48) Termo -> . Termo % Fator
+    (49) Termo -> . Fator
+    (50) Fator -> . ID
+    (51) Fator -> . ID [ Exp ]
+    (52) Fator -> . ID [ Exp ] [ Exp ]
+    (53) Fator -> . NUMBER
+    (54) Fator -> . ( Exp )
+
+    ID              shift and go to state 38
+    NUMBER          shift and go to state 39
+    (               shift and go to state 33
+
+    Exp                            shift and go to state 92
+    Termo                          shift and go to state 36
+    Fator                          shift and go to state 37
+
+state 74
+
+    (8) DeclaracaoInt -> ID = READ ( . )
+
+    )               shift and go to state 93
+
+
+state 75
+
+    (9) DeclaracaoInt -> ID [ NUMBER ] .
+    (10) DeclaracaoInt -> ID [ NUMBER ] . = Lista
+    (11) DeclaracaoInt -> ID [ NUMBER ] . [ NUMBER ]
+
+    ;               reduce using rule 9 (DeclaracaoInt -> ID [ NUMBER ] .)
+    INT             reduce using rule 9 (DeclaracaoInt -> ID [ NUMBER ] .)
+    WHILE           reduce using rule 9 (DeclaracaoInt -> ID [ NUMBER ] .)
+    IF              reduce using rule 9 (DeclaracaoInt -> ID [ NUMBER ] .)
+    PRINT           reduce using rule 9 (DeclaracaoInt -> ID [ NUMBER ] .)
+    PRINTLN         reduce using rule 9 (DeclaracaoInt -> ID [ NUMBER ] .)
+    ID              reduce using rule 9 (DeclaracaoInt -> ID [ NUMBER ] .)
+    READ            reduce using rule 9 (DeclaracaoInt -> ID [ NUMBER ] .)
+    $end            reduce using rule 9 (DeclaracaoInt -> ID [ NUMBER ] .)
+    =               shift and go to state 95
+    [               shift and go to state 94
+
+
+state 76
+
+    (54) Fator -> ( Exp ) .
+
+    *               reduce using rule 54 (Fator -> ( Exp ) .)
+    /               reduce using rule 54 (Fator -> ( Exp ) .)
+    %               reduce using rule 54 (Fator -> ( Exp ) .)
+    +               reduce using rule 54 (Fator -> ( Exp ) .)
+    -               reduce using rule 54 (Fator -> ( Exp ) .)
+    COMP            reduce using rule 54 (Fator -> ( Exp ) .)
+    <               reduce using rule 54 (Fator -> ( Exp ) .)
+    >               reduce using rule 54 (Fator -> ( Exp ) .)
+    MENORIGUAL      reduce using rule 54 (Fator -> ( Exp ) .)
+    MAIORIGUAL      reduce using rule 54 (Fator -> ( Exp ) .)
+    DIF             reduce using rule 54 (Fator -> ( Exp ) .)
+    )               reduce using rule 54 (Fator -> ( Exp ) .)
+    ;               reduce using rule 54 (Fator -> ( Exp ) .)
+    WHILE           reduce using rule 54 (Fator -> ( Exp ) .)
+    IF              reduce using rule 54 (Fator -> ( Exp ) .)
+    PRINT           reduce using rule 54 (Fator -> ( Exp ) .)
+    PRINTLN         reduce using rule 54 (Fator -> ( Exp ) .)
+    ID              reduce using rule 54 (Fator -> ( Exp ) .)
+    READ            reduce using rule 54 (Fator -> ( Exp ) .)
+    $end            reduce using rule 54 (Fator -> ( Exp ) .)
+    }               reduce using rule 54 (Fator -> ( Exp ) .)
+    ]               reduce using rule 54 (Fator -> ( Exp ) .)
+    INT             reduce using rule 54 (Fator -> ( Exp ) .)
+
+
+state 77
+
+    (29) Ciclo -> WHILE ( Comparacao ) { . Operacoes }
+    (15) Operacoes -> . Operacao Operacoes
+    (16) Operacoes -> .
+    (17) Operacao -> . Atribuicao
+    (18) Operacao -> . Ciclo
+    (19) Operacao -> . Condicional
+    (20) Operacao -> . Output
+    (21) Atribuicao -> . AtribuicaoInt ;
+    (22) Atribuicao -> . AtribuicaoInt
+    (29) Ciclo -> . WHILE ( Comparacao ) { Operacoes }
+    (30) Condicional -> . IF ( Comparacao ) { Operacoes }
+    (31) Condicional -> . IF ( Comparacao ) { Operacoes } ELSE { Operacoes }
+    (39) Output -> . PRINT ( Exp ) ;
+    (40) Output -> . PRINT ( STRING ) ;
+    (41) Output -> . PRINTLN ( Exp ) ;
+    (42) Output -> . PRINTLN ( STRING ) ;
+    (23) AtribuicaoInt -> . ID = Exp
+    (24) AtribuicaoInt -> . READ ( ID )
+    (25) AtribuicaoInt -> . ID [ Exp ] = Exp
+    (26) AtribuicaoInt -> . READ ( ID [ Exp ] )
+    (27) AtribuicaoInt -> . ID [ Exp ] [ Exp ] = Exp
+    (28) AtribuicaoInt -> . READ ( ID [ Exp ] [ Exp ] )
+
+    }               reduce using rule 16 (Operacoes -> .)
+    WHILE           shift and go to state 12
+    IF              shift and go to state 13
+    PRINT           shift and go to state 14
+    PRINTLN         shift and go to state 15
+    ID              shift and go to state 16
+    READ            shift and go to state 17
+
+    Operacoes                      shift and go to state 96
+    Operacao                       shift and go to state 6
+    Atribuicao                     shift and go to state 7
+    Ciclo                          shift and go to state 8
+    Condicional                    shift and go to state 9
+    Output                         shift and go to state 10
+    AtribuicaoInt                  shift and go to state 11
+
+state 78
+
+    (32) Comparacao -> Exp Comparador Exp .
+    (43) Exp -> Exp . + Termo
+    (44) Exp -> Exp . - Termo
+
+    )               reduce using rule 32 (Comparacao -> Exp Comparador Exp .)
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 79
+
+    (43) Exp -> Exp + Termo .
+    (46) Termo -> Termo . * Fator
+    (47) Termo -> Termo . / Fator
+    (48) Termo -> Termo . % Fator
+
+    +               reduce using rule 43 (Exp -> Exp + Termo .)
+    -               reduce using rule 43 (Exp -> Exp + Termo .)
+    COMP            reduce using rule 43 (Exp -> Exp + Termo .)
+    <               reduce using rule 43 (Exp -> Exp + Termo .)
+    >               reduce using rule 43 (Exp -> Exp + Termo .)
+    MENORIGUAL      reduce using rule 43 (Exp -> Exp + Termo .)
+    MAIORIGUAL      reduce using rule 43 (Exp -> Exp + Termo .)
+    DIF             reduce using rule 43 (Exp -> Exp + Termo .)
+    )               reduce using rule 43 (Exp -> Exp + Termo .)
+    ;               reduce using rule 43 (Exp -> Exp + Termo .)
+    WHILE           reduce using rule 43 (Exp -> Exp + Termo .)
+    IF              reduce using rule 43 (Exp -> Exp + Termo .)
+    PRINT           reduce using rule 43 (Exp -> Exp + Termo .)
+    PRINTLN         reduce using rule 43 (Exp -> Exp + Termo .)
+    ID              reduce using rule 43 (Exp -> Exp + Termo .)
+    READ            reduce using rule 43 (Exp -> Exp + Termo .)
+    $end            reduce using rule 43 (Exp -> Exp + Termo .)
+    }               reduce using rule 43 (Exp -> Exp + Termo .)
+    ]               reduce using rule 43 (Exp -> Exp + Termo .)
+    INT             reduce using rule 43 (Exp -> Exp + Termo .)
+    *               shift and go to state 62
+    /               shift and go to state 63
+    %               shift and go to state 64
+
+
+state 80
+
+    (44) Exp -> Exp - Termo .
+    (46) Termo -> Termo . * Fator
+    (47) Termo -> Termo . / Fator
+    (48) Termo -> Termo . % Fator
+
+    +               reduce using rule 44 (Exp -> Exp - Termo .)
+    -               reduce using rule 44 (Exp -> Exp - Termo .)
+    COMP            reduce using rule 44 (Exp -> Exp - Termo .)
+    <               reduce using rule 44 (Exp -> Exp - Termo .)
+    >               reduce using rule 44 (Exp -> Exp - Termo .)
+    MENORIGUAL      reduce using rule 44 (Exp -> Exp - Termo .)
+    MAIORIGUAL      reduce using rule 44 (Exp -> Exp - Termo .)
+    DIF             reduce using rule 44 (Exp -> Exp - Termo .)
+    )               reduce using rule 44 (Exp -> Exp - Termo .)
+    ;               reduce using rule 44 (Exp -> Exp - Termo .)
+    WHILE           reduce using rule 44 (Exp -> Exp - Termo .)
+    IF              reduce using rule 44 (Exp -> Exp - Termo .)
+    PRINT           reduce using rule 44 (Exp -> Exp - Termo .)
+    PRINTLN         reduce using rule 44 (Exp -> Exp - Termo .)
+    ID              reduce using rule 44 (Exp -> Exp - Termo .)
+    READ            reduce using rule 44 (Exp -> Exp - Termo .)
+    $end            reduce using rule 44 (Exp -> Exp - Termo .)
+    }               reduce using rule 44 (Exp -> Exp - Termo .)
+    ]               reduce using rule 44 (Exp -> Exp - Termo .)
+    INT             reduce using rule 44 (Exp -> Exp - Termo .)
+    *               shift and go to state 62
+    /               shift and go to state 63
+    %               shift and go to state 64
+
+
+state 81
+
+    (46) Termo -> Termo * Fator .
+
+    *               reduce using rule 46 (Termo -> Termo * Fator .)
+    /               reduce using rule 46 (Termo -> Termo * Fator .)
+    %               reduce using rule 46 (Termo -> Termo * Fator .)
+    +               reduce using rule 46 (Termo -> Termo * Fator .)
+    -               reduce using rule 46 (Termo -> Termo * Fator .)
+    COMP            reduce using rule 46 (Termo -> Termo * Fator .)
+    <               reduce using rule 46 (Termo -> Termo * Fator .)
+    >               reduce using rule 46 (Termo -> Termo * Fator .)
+    MENORIGUAL      reduce using rule 46 (Termo -> Termo * Fator .)
+    MAIORIGUAL      reduce using rule 46 (Termo -> Termo * Fator .)
+    DIF             reduce using rule 46 (Termo -> Termo * Fator .)
+    )               reduce using rule 46 (Termo -> Termo * Fator .)
+    ;               reduce using rule 46 (Termo -> Termo * Fator .)
+    WHILE           reduce using rule 46 (Termo -> Termo * Fator .)
+    IF              reduce using rule 46 (Termo -> Termo * Fator .)
+    PRINT           reduce using rule 46 (Termo -> Termo * Fator .)
+    PRINTLN         reduce using rule 46 (Termo -> Termo * Fator .)
+    ID              reduce using rule 46 (Termo -> Termo * Fator .)
+    READ            reduce using rule 46 (Termo -> Termo * Fator .)
+    $end            reduce using rule 46 (Termo -> Termo * Fator .)
+    }               reduce using rule 46 (Termo -> Termo * Fator .)
+    ]               reduce using rule 46 (Termo -> Termo * Fator .)
+    INT             reduce using rule 46 (Termo -> Termo * Fator .)
+
+
+state 82
+
+    (47) Termo -> Termo / Fator .
+
+    *               reduce using rule 47 (Termo -> Termo / Fator .)
+    /               reduce using rule 47 (Termo -> Termo / Fator .)
+    %               reduce using rule 47 (Termo -> Termo / Fator .)
+    +               reduce using rule 47 (Termo -> Termo / Fator .)
+    -               reduce using rule 47 (Termo -> Termo / Fator .)
+    COMP            reduce using rule 47 (Termo -> Termo / Fator .)
+    <               reduce using rule 47 (Termo -> Termo / Fator .)
+    >               reduce using rule 47 (Termo -> Termo / Fator .)
+    MENORIGUAL      reduce using rule 47 (Termo -> Termo / Fator .)
+    MAIORIGUAL      reduce using rule 47 (Termo -> Termo / Fator .)
+    DIF             reduce using rule 47 (Termo -> Termo / Fator .)
+    )               reduce using rule 47 (Termo -> Termo / Fator .)
+    ;               reduce using rule 47 (Termo -> Termo / Fator .)
+    WHILE           reduce using rule 47 (Termo -> Termo / Fator .)
+    IF              reduce using rule 47 (Termo -> Termo / Fator .)
+    PRINT           reduce using rule 47 (Termo -> Termo / Fator .)
+    PRINTLN         reduce using rule 47 (Termo -> Termo / Fator .)
+    ID              reduce using rule 47 (Termo -> Termo / Fator .)
+    READ            reduce using rule 47 (Termo -> Termo / Fator .)
+    $end            reduce using rule 47 (Termo -> Termo / Fator .)
+    }               reduce using rule 47 (Termo -> Termo / Fator .)
+    ]               reduce using rule 47 (Termo -> Termo / Fator .)
+    INT             reduce using rule 47 (Termo -> Termo / Fator .)
+
+
+state 83
+
+    (48) Termo -> Termo % Fator .
+
+    *               reduce using rule 48 (Termo -> Termo % Fator .)
+    /               reduce using rule 48 (Termo -> Termo % Fator .)
+    %               reduce using rule 48 (Termo -> Termo % Fator .)
+    +               reduce using rule 48 (Termo -> Termo % Fator .)
+    -               reduce using rule 48 (Termo -> Termo % Fator .)
+    COMP            reduce using rule 48 (Termo -> Termo % Fator .)
+    <               reduce using rule 48 (Termo -> Termo % Fator .)
+    >               reduce using rule 48 (Termo -> Termo % Fator .)
+    MENORIGUAL      reduce using rule 48 (Termo -> Termo % Fator .)
+    MAIORIGUAL      reduce using rule 48 (Termo -> Termo % Fator .)
+    DIF             reduce using rule 48 (Termo -> Termo % Fator .)
+    )               reduce using rule 48 (Termo -> Termo % Fator .)
+    ;               reduce using rule 48 (Termo -> Termo % Fator .)
+    WHILE           reduce using rule 48 (Termo -> Termo % Fator .)
+    IF              reduce using rule 48 (Termo -> Termo % Fator .)
+    PRINT           reduce using rule 48 (Termo -> Termo % Fator .)
+    PRINTLN         reduce using rule 48 (Termo -> Termo % Fator .)
+    ID              reduce using rule 48 (Termo -> Termo % Fator .)
+    READ            reduce using rule 48 (Termo -> Termo % Fator .)
+    $end            reduce using rule 48 (Termo -> Termo % Fator .)
+    }               reduce using rule 48 (Termo -> Termo % Fator .)
+    ]               reduce using rule 48 (Termo -> Termo % Fator .)
+    INT             reduce using rule 48 (Termo -> Termo % Fator .)
+
+
+state 84
+
+    (51) Fator -> ID [ Exp . ]
+    (52) Fator -> ID [ Exp . ] [ Exp ]
+    (43) Exp -> Exp . + Termo
+    (44) Exp -> Exp . - Termo
+
+    ]               shift and go to state 97
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 85
+
+    (30) Condicional -> IF ( Comparacao ) { . Operacoes }
+    (31) Condicional -> IF ( Comparacao ) { . Operacoes } ELSE { Operacoes }
+    (15) Operacoes -> . Operacao Operacoes
+    (16) Operacoes -> .
+    (17) Operacao -> . Atribuicao
+    (18) Operacao -> . Ciclo
+    (19) Operacao -> . Condicional
+    (20) Operacao -> . Output
+    (21) Atribuicao -> . AtribuicaoInt ;
+    (22) Atribuicao -> . AtribuicaoInt
+    (29) Ciclo -> . WHILE ( Comparacao ) { Operacoes }
+    (30) Condicional -> . IF ( Comparacao ) { Operacoes }
+    (31) Condicional -> . IF ( Comparacao ) { Operacoes } ELSE { Operacoes }
+    (39) Output -> . PRINT ( Exp ) ;
+    (40) Output -> . PRINT ( STRING ) ;
+    (41) Output -> . PRINTLN ( Exp ) ;
+    (42) Output -> . PRINTLN ( STRING ) ;
+    (23) AtribuicaoInt -> . ID = Exp
+    (24) AtribuicaoInt -> . READ ( ID )
+    (25) AtribuicaoInt -> . ID [ Exp ] = Exp
+    (26) AtribuicaoInt -> . READ ( ID [ Exp ] )
+    (27) AtribuicaoInt -> . ID [ Exp ] [ Exp ] = Exp
+    (28) AtribuicaoInt -> . READ ( ID [ Exp ] [ Exp ] )
+
+    }               reduce using rule 16 (Operacoes -> .)
+    WHILE           shift and go to state 12
+    IF              shift and go to state 13
+    PRINT           shift and go to state 14
+    PRINTLN         shift and go to state 15
+    ID              shift and go to state 16
+    READ            shift and go to state 17
+
+    Operacoes                      shift and go to state 98
+    Operacao                       shift and go to state 6
+    Atribuicao                     shift and go to state 7
+    Ciclo                          shift and go to state 8
+    Condicional                    shift and go to state 9
+    Output                         shift and go to state 10
+    AtribuicaoInt                  shift and go to state 11
+
+state 86
+
+    (39) Output -> PRINT ( Exp ) ; .
+
+    WHILE           reduce using rule 39 (Output -> PRINT ( Exp ) ; .)
+    IF              reduce using rule 39 (Output -> PRINT ( Exp ) ; .)
+    PRINT           reduce using rule 39 (Output -> PRINT ( Exp ) ; .)
+    PRINTLN         reduce using rule 39 (Output -> PRINT ( Exp ) ; .)
+    ID              reduce using rule 39 (Output -> PRINT ( Exp ) ; .)
+    READ            reduce using rule 39 (Output -> PRINT ( Exp ) ; .)
+    $end            reduce using rule 39 (Output -> PRINT ( Exp ) ; .)
+    }               reduce using rule 39 (Output -> PRINT ( Exp ) ; .)
+
+
+state 87
+
+    (40) Output -> PRINT ( STRING ) ; .
+
+    WHILE           reduce using rule 40 (Output -> PRINT ( STRING ) ; .)
+    IF              reduce using rule 40 (Output -> PRINT ( STRING ) ; .)
+    PRINT           reduce using rule 40 (Output -> PRINT ( STRING ) ; .)
+    PRINTLN         reduce using rule 40 (Output -> PRINT ( STRING ) ; .)
+    ID              reduce using rule 40 (Output -> PRINT ( STRING ) ; .)
+    READ            reduce using rule 40 (Output -> PRINT ( STRING ) ; .)
+    $end            reduce using rule 40 (Output -> PRINT ( STRING ) ; .)
+    }               reduce using rule 40 (Output -> PRINT ( STRING ) ; .)
+
+
+state 88
+
+    (41) Output -> PRINTLN ( Exp ) ; .
+
+    WHILE           reduce using rule 41 (Output -> PRINTLN ( Exp ) ; .)
+    IF              reduce using rule 41 (Output -> PRINTLN ( Exp ) ; .)
+    PRINT           reduce using rule 41 (Output -> PRINTLN ( Exp ) ; .)
+    PRINTLN         reduce using rule 41 (Output -> PRINTLN ( Exp ) ; .)
+    ID              reduce using rule 41 (Output -> PRINTLN ( Exp ) ; .)
+    READ            reduce using rule 41 (Output -> PRINTLN ( Exp ) ; .)
+    $end            reduce using rule 41 (Output -> PRINTLN ( Exp ) ; .)
+    }               reduce using rule 41 (Output -> PRINTLN ( Exp ) ; .)
+
+
+state 89
+
+    (42) Output -> PRINTLN ( STRING ) ; .
+
+    WHILE           reduce using rule 42 (Output -> PRINTLN ( STRING ) ; .)
+    IF              reduce using rule 42 (Output -> PRINTLN ( STRING ) ; .)
+    PRINT           reduce using rule 42 (Output -> PRINTLN ( STRING ) ; .)
+    PRINTLN         reduce using rule 42 (Output -> PRINTLN ( STRING ) ; .)
+    ID              reduce using rule 42 (Output -> PRINTLN ( STRING ) ; .)
+    READ            reduce using rule 42 (Output -> PRINTLN ( STRING ) ; .)
+    $end            reduce using rule 42 (Output -> PRINTLN ( STRING ) ; .)
+    }               reduce using rule 42 (Output -> PRINTLN ( STRING ) ; .)
+
+
+state 90
+
+    (27) AtribuicaoInt -> ID [ Exp ] [ . Exp ] = Exp
+    (43) Exp -> . Exp + Termo
+    (44) Exp -> . Exp - Termo
+    (45) Exp -> . Termo
+    (46) Termo -> . Termo * Fator
+    (47) Termo -> . Termo / Fator
+    (48) Termo -> . Termo % Fator
+    (49) Termo -> . Fator
+    (50) Fator -> . ID
+    (51) Fator -> . ID [ Exp ]
+    (52) Fator -> . ID [ Exp ] [ Exp ]
+    (53) Fator -> . NUMBER
+    (54) Fator -> . ( Exp )
+
+    ID              shift and go to state 38
+    NUMBER          shift and go to state 39
+    (               shift and go to state 33
+
+    Exp                            shift and go to state 99
+    Termo                          shift and go to state 36
+    Fator                          shift and go to state 37
+
+state 91
+
+    (25) AtribuicaoInt -> ID [ Exp ] = . Exp
+    (43) Exp -> . Exp + Termo
+    (44) Exp -> . Exp - Termo
+    (45) Exp -> . Termo
+    (46) Termo -> . Termo * Fator
+    (47) Termo -> . Termo / Fator
+    (48) Termo -> . Termo % Fator
+    (49) Termo -> . Fator
+    (50) Fator -> . ID
+    (51) Fator -> . ID [ Exp ]
+    (52) Fator -> . ID [ Exp ] [ Exp ]
+    (53) Fator -> . NUMBER
+    (54) Fator -> . ( Exp )
+
+    ID              shift and go to state 38
+    NUMBER          shift and go to state 39
+    (               shift and go to state 33
+
+    Exp                            shift and go to state 100
+    Termo                          shift and go to state 36
+    Fator                          shift and go to state 37
+
+state 92
+
+    (26) AtribuicaoInt -> READ ( ID [ Exp . ] )
+    (28) AtribuicaoInt -> READ ( ID [ Exp . ] [ Exp ] )
+    (43) Exp -> Exp . + Termo
+    (44) Exp -> Exp . - Termo
+
+    ]               shift and go to state 101
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 93
+
+    (8) DeclaracaoInt -> ID = READ ( ) .
+
+    ;               reduce using rule 8 (DeclaracaoInt -> ID = READ ( ) .)
+    INT             reduce using rule 8 (DeclaracaoInt -> ID = READ ( ) .)
+    WHILE           reduce using rule 8 (DeclaracaoInt -> ID = READ ( ) .)
+    IF              reduce using rule 8 (DeclaracaoInt -> ID = READ ( ) .)
+    PRINT           reduce using rule 8 (DeclaracaoInt -> ID = READ ( ) .)
+    PRINTLN         reduce using rule 8 (DeclaracaoInt -> ID = READ ( ) .)
+    ID              reduce using rule 8 (DeclaracaoInt -> ID = READ ( ) .)
+    READ            reduce using rule 8 (DeclaracaoInt -> ID = READ ( ) .)
+    $end            reduce using rule 8 (DeclaracaoInt -> ID = READ ( ) .)
+
+
+state 94
+
+    (11) DeclaracaoInt -> ID [ NUMBER ] [ . NUMBER ]
+
+    NUMBER          shift and go to state 102
+
+
+state 95
+
+    (10) DeclaracaoInt -> ID [ NUMBER ] = . Lista
+    (12) Lista -> . { NUMBER RLista }
+
+    {               shift and go to state 104
+
+    Lista                          shift and go to state 103
+
+state 96
+
+    (29) Ciclo -> WHILE ( Comparacao ) { Operacoes . }
+
+    }               shift and go to state 105
+
+
+state 97
+
+    (51) Fator -> ID [ Exp ] .
+    (52) Fator -> ID [ Exp ] . [ Exp ]
+
+    *               reduce using rule 51 (Fator -> ID [ Exp ] .)
+    /               reduce using rule 51 (Fator -> ID [ Exp ] .)
+    %               reduce using rule 51 (Fator -> ID [ Exp ] .)
+    +               reduce using rule 51 (Fator -> ID [ Exp ] .)
+    -               reduce using rule 51 (Fator -> ID [ Exp ] .)
+    COMP            reduce using rule 51 (Fator -> ID [ Exp ] .)
+    <               reduce using rule 51 (Fator -> ID [ Exp ] .)
+    >               reduce using rule 51 (Fator -> ID [ Exp ] .)
+    MENORIGUAL      reduce using rule 51 (Fator -> ID [ Exp ] .)
+    MAIORIGUAL      reduce using rule 51 (Fator -> ID [ Exp ] .)
+    DIF             reduce using rule 51 (Fator -> ID [ Exp ] .)
+    )               reduce using rule 51 (Fator -> ID [ Exp ] .)
+    ;               reduce using rule 51 (Fator -> ID [ Exp ] .)
+    WHILE           reduce using rule 51 (Fator -> ID [ Exp ] .)
+    IF              reduce using rule 51 (Fator -> ID [ Exp ] .)
+    PRINT           reduce using rule 51 (Fator -> ID [ Exp ] .)
+    PRINTLN         reduce using rule 51 (Fator -> ID [ Exp ] .)
+    ID              reduce using rule 51 (Fator -> ID [ Exp ] .)
+    READ            reduce using rule 51 (Fator -> ID [ Exp ] .)
+    $end            reduce using rule 51 (Fator -> ID [ Exp ] .)
+    }               reduce using rule 51 (Fator -> ID [ Exp ] .)
+    ]               reduce using rule 51 (Fator -> ID [ Exp ] .)
+    INT             reduce using rule 51 (Fator -> ID [ Exp ] .)
+    [               shift and go to state 106
+
+
+state 98
+
+    (30) Condicional -> IF ( Comparacao ) { Operacoes . }
+    (31) Condicional -> IF ( Comparacao ) { Operacoes . } ELSE { Operacoes }
+
+    }               shift and go to state 107
+
+
+state 99
+
+    (27) AtribuicaoInt -> ID [ Exp ] [ Exp . ] = Exp
+    (43) Exp -> Exp . + Termo
+    (44) Exp -> Exp . - Termo
+
+    ]               shift and go to state 108
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 100
+
+    (25) AtribuicaoInt -> ID [ Exp ] = Exp .
+    (43) Exp -> Exp . + Termo
+    (44) Exp -> Exp . - Termo
+
+    ;               reduce using rule 25 (AtribuicaoInt -> ID [ Exp ] = Exp .)
+    WHILE           reduce using rule 25 (AtribuicaoInt -> ID [ Exp ] = Exp .)
+    IF              reduce using rule 25 (AtribuicaoInt -> ID [ Exp ] = Exp .)
+    PRINT           reduce using rule 25 (AtribuicaoInt -> ID [ Exp ] = Exp .)
+    PRINTLN         reduce using rule 25 (AtribuicaoInt -> ID [ Exp ] = Exp .)
+    ID              reduce using rule 25 (AtribuicaoInt -> ID [ Exp ] = Exp .)
+    READ            reduce using rule 25 (AtribuicaoInt -> ID [ Exp ] = Exp .)
+    $end            reduce using rule 25 (AtribuicaoInt -> ID [ Exp ] = Exp .)
+    }               reduce using rule 25 (AtribuicaoInt -> ID [ Exp ] = Exp .)
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 101
+
+    (26) AtribuicaoInt -> READ ( ID [ Exp ] . )
+    (28) AtribuicaoInt -> READ ( ID [ Exp ] . [ Exp ] )
+
+    )               shift and go to state 110
+    [               shift and go to state 109
+
+
+state 102
+
+    (11) DeclaracaoInt -> ID [ NUMBER ] [ NUMBER . ]
+
+    ]               shift and go to state 111
+
+
+state 103
+
+    (10) DeclaracaoInt -> ID [ NUMBER ] = Lista .
+
+    ;               reduce using rule 10 (DeclaracaoInt -> ID [ NUMBER ] = Lista .)
+    INT             reduce using rule 10 (DeclaracaoInt -> ID [ NUMBER ] = Lista .)
+    WHILE           reduce using rule 10 (DeclaracaoInt -> ID [ NUMBER ] = Lista .)
+    IF              reduce using rule 10 (DeclaracaoInt -> ID [ NUMBER ] = Lista .)
+    PRINT           reduce using rule 10 (DeclaracaoInt -> ID [ NUMBER ] = Lista .)
+    PRINTLN         reduce using rule 10 (DeclaracaoInt -> ID [ NUMBER ] = Lista .)
+    ID              reduce using rule 10 (DeclaracaoInt -> ID [ NUMBER ] = Lista .)
+    READ            reduce using rule 10 (DeclaracaoInt -> ID [ NUMBER ] = Lista .)
+    $end            reduce using rule 10 (DeclaracaoInt -> ID [ NUMBER ] = Lista .)
+
+
+state 104
+
+    (12) Lista -> { . NUMBER RLista }
+
+    NUMBER          shift and go to state 112
+
+
+state 105
+
+    (29) Ciclo -> WHILE ( Comparacao ) { Operacoes } .
+
+    WHILE           reduce using rule 29 (Ciclo -> WHILE ( Comparacao ) { Operacoes } .)
+    IF              reduce using rule 29 (Ciclo -> WHILE ( Comparacao ) { Operacoes } .)
+    PRINT           reduce using rule 29 (Ciclo -> WHILE ( Comparacao ) { Operacoes } .)
+    PRINTLN         reduce using rule 29 (Ciclo -> WHILE ( Comparacao ) { Operacoes } .)
+    ID              reduce using rule 29 (Ciclo -> WHILE ( Comparacao ) { Operacoes } .)
+    READ            reduce using rule 29 (Ciclo -> WHILE ( Comparacao ) { Operacoes } .)
+    $end            reduce using rule 29 (Ciclo -> WHILE ( Comparacao ) { Operacoes } .)
+    }               reduce using rule 29 (Ciclo -> WHILE ( Comparacao ) { Operacoes } .)
+
+
+state 106
+
+    (52) Fator -> ID [ Exp ] [ . Exp ]
+    (43) Exp -> . Exp + Termo
+    (44) Exp -> . Exp - Termo
+    (45) Exp -> . Termo
+    (46) Termo -> . Termo * Fator
+    (47) Termo -> . Termo / Fator
+    (48) Termo -> . Termo % Fator
+    (49) Termo -> . Fator
+    (50) Fator -> . ID
+    (51) Fator -> . ID [ Exp ]
+    (52) Fator -> . ID [ Exp ] [ Exp ]
+    (53) Fator -> . NUMBER
+    (54) Fator -> . ( Exp )
+
+    ID              shift and go to state 38
+    NUMBER          shift and go to state 39
+    (               shift and go to state 33
+
+    Exp                            shift and go to state 113
+    Termo                          shift and go to state 36
+    Fator                          shift and go to state 37
+
+state 107
+
+    (30) Condicional -> IF ( Comparacao ) { Operacoes } .
+    (31) Condicional -> IF ( Comparacao ) { Operacoes } . ELSE { Operacoes }
+
+    WHILE           reduce using rule 30 (Condicional -> IF ( Comparacao ) { Operacoes } .)
+    IF              reduce using rule 30 (Condicional -> IF ( Comparacao ) { Operacoes } .)
+    PRINT           reduce using rule 30 (Condicional -> IF ( Comparacao ) { Operacoes } .)
+    PRINTLN         reduce using rule 30 (Condicional -> IF ( Comparacao ) { Operacoes } .)
+    ID              reduce using rule 30 (Condicional -> IF ( Comparacao ) { Operacoes } .)
+    READ            reduce using rule 30 (Condicional -> IF ( Comparacao ) { Operacoes } .)
+    $end            reduce using rule 30 (Condicional -> IF ( Comparacao ) { Operacoes } .)
+    }               reduce using rule 30 (Condicional -> IF ( Comparacao ) { Operacoes } .)
+    ELSE            shift and go to state 114
+
+
+state 108
+
+    (27) AtribuicaoInt -> ID [ Exp ] [ Exp ] . = Exp
+
+    =               shift and go to state 115
+
+
+state 109
+
+    (28) AtribuicaoInt -> READ ( ID [ Exp ] [ . Exp ] )
+    (43) Exp -> . Exp + Termo
+    (44) Exp -> . Exp - Termo
+    (45) Exp -> . Termo
+    (46) Termo -> . Termo * Fator
+    (47) Termo -> . Termo / Fator
+    (48) Termo -> . Termo % Fator
+    (49) Termo -> . Fator
+    (50) Fator -> . ID
+    (51) Fator -> . ID [ Exp ]
+    (52) Fator -> . ID [ Exp ] [ Exp ]
+    (53) Fator -> . NUMBER
+    (54) Fator -> . ( Exp )
+
+    ID              shift and go to state 38
+    NUMBER          shift and go to state 39
+    (               shift and go to state 33
+
+    Exp                            shift and go to state 116
+    Termo                          shift and go to state 36
+    Fator                          shift and go to state 37
+
+state 110
+
+    (26) AtribuicaoInt -> READ ( ID [ Exp ] ) .
+
+    ;               reduce using rule 26 (AtribuicaoInt -> READ ( ID [ Exp ] ) .)
+    WHILE           reduce using rule 26 (AtribuicaoInt -> READ ( ID [ Exp ] ) .)
+    IF              reduce using rule 26 (AtribuicaoInt -> READ ( ID [ Exp ] ) .)
+    PRINT           reduce using rule 26 (AtribuicaoInt -> READ ( ID [ Exp ] ) .)
+    PRINTLN         reduce using rule 26 (AtribuicaoInt -> READ ( ID [ Exp ] ) .)
+    ID              reduce using rule 26 (AtribuicaoInt -> READ ( ID [ Exp ] ) .)
+    READ            reduce using rule 26 (AtribuicaoInt -> READ ( ID [ Exp ] ) .)
+    $end            reduce using rule 26 (AtribuicaoInt -> READ ( ID [ Exp ] ) .)
+    }               reduce using rule 26 (AtribuicaoInt -> READ ( ID [ Exp ] ) .)
+
+
+state 111
+
+    (11) DeclaracaoInt -> ID [ NUMBER ] [ NUMBER ] .
+
+    ;               reduce using rule 11 (DeclaracaoInt -> ID [ NUMBER ] [ NUMBER ] .)
+    INT             reduce using rule 11 (DeclaracaoInt -> ID [ NUMBER ] [ NUMBER ] .)
+    WHILE           reduce using rule 11 (DeclaracaoInt -> ID [ NUMBER ] [ NUMBER ] .)
+    IF              reduce using rule 11 (DeclaracaoInt -> ID [ NUMBER ] [ NUMBER ] .)
+    PRINT           reduce using rule 11 (DeclaracaoInt -> ID [ NUMBER ] [ NUMBER ] .)
+    PRINTLN         reduce using rule 11 (DeclaracaoInt -> ID [ NUMBER ] [ NUMBER ] .)
+    ID              reduce using rule 11 (DeclaracaoInt -> ID [ NUMBER ] [ NUMBER ] .)
+    READ            reduce using rule 11 (DeclaracaoInt -> ID [ NUMBER ] [ NUMBER ] .)
+    $end            reduce using rule 11 (DeclaracaoInt -> ID [ NUMBER ] [ NUMBER ] .)
+
+
+state 112
+
+    (12) Lista -> { NUMBER . RLista }
+    (13) RLista -> . , NUMBER RLista
+    (14) RLista -> .
+
+    ,               shift and go to state 118
+    }               reduce using rule 14 (RLista -> .)
+
+    RLista                         shift and go to state 117
+
+state 113
+
+    (52) Fator -> ID [ Exp ] [ Exp . ]
+    (43) Exp -> Exp . + Termo
+    (44) Exp -> Exp . - Termo
+
+    ]               shift and go to state 119
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 114
+
+    (31) Condicional -> IF ( Comparacao ) { Operacoes } ELSE . { Operacoes }
+
+    {               shift and go to state 120
+
+
+state 115
+
+    (27) AtribuicaoInt -> ID [ Exp ] [ Exp ] = . Exp
+    (43) Exp -> . Exp + Termo
+    (44) Exp -> . Exp - Termo
+    (45) Exp -> . Termo
+    (46) Termo -> . Termo * Fator
+    (47) Termo -> . Termo / Fator
+    (48) Termo -> . Termo % Fator
+    (49) Termo -> . Fator
+    (50) Fator -> . ID
+    (51) Fator -> . ID [ Exp ]
+    (52) Fator -> . ID [ Exp ] [ Exp ]
+    (53) Fator -> . NUMBER
+    (54) Fator -> . ( Exp )
+
+    ID              shift and go to state 38
+    NUMBER          shift and go to state 39
+    (               shift and go to state 33
+
+    Exp                            shift and go to state 121
+    Termo                          shift and go to state 36
+    Fator                          shift and go to state 37
+
+state 116
+
+    (28) AtribuicaoInt -> READ ( ID [ Exp ] [ Exp . ] )
+    (43) Exp -> Exp . + Termo
+    (44) Exp -> Exp . - Termo
+
+    ]               shift and go to state 122
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 117
+
+    (12) Lista -> { NUMBER RLista . }
+
+    }               shift and go to state 123
+
+
+state 118
+
+    (13) RLista -> , . NUMBER RLista
+
+    NUMBER          shift and go to state 124
+
+
+state 119
+
+    (52) Fator -> ID [ Exp ] [ Exp ] .
+
+    *               reduce using rule 52 (Fator -> ID [ Exp ] [ Exp ] .)
+    /               reduce using rule 52 (Fator -> ID [ Exp ] [ Exp ] .)
+    %               reduce using rule 52 (Fator -> ID [ Exp ] [ Exp ] .)
+    +               reduce using rule 52 (Fator -> ID [ Exp ] [ Exp ] .)
+    -               reduce using rule 52 (Fator -> ID [ Exp ] [ Exp ] .)
+    COMP            reduce using rule 52 (Fator -> ID [ Exp ] [ Exp ] .)
+    <               reduce using rule 52 (Fator -> ID [ Exp ] [ Exp ] .)
+    >               reduce using rule 52 (Fator -> ID [ Exp ] [ Exp ] .)
+    MENORIGUAL      reduce using rule 52 (Fator -> ID [ Exp ] [ Exp ] .)
+    MAIORIGUAL      reduce using rule 52 (Fator -> ID [ Exp ] [ Exp ] .)
+    DIF             reduce using rule 52 (Fator -> ID [ Exp ] [ Exp ] .)
+    )               reduce using rule 52 (Fator -> ID [ Exp ] [ Exp ] .)
+    ;               reduce using rule 52 (Fator -> ID [ Exp ] [ Exp ] .)
+    WHILE           reduce using rule 52 (Fator -> ID [ Exp ] [ Exp ] .)
+    IF              reduce using rule 52 (Fator -> ID [ Exp ] [ Exp ] .)
+    PRINT           reduce using rule 52 (Fator -> ID [ Exp ] [ Exp ] .)
+    PRINTLN         reduce using rule 52 (Fator -> ID [ Exp ] [ Exp ] .)
+    ID              reduce using rule 52 (Fator -> ID [ Exp ] [ Exp ] .)
+    READ            reduce using rule 52 (Fator -> ID [ Exp ] [ Exp ] .)
+    $end            reduce using rule 52 (Fator -> ID [ Exp ] [ Exp ] .)
+    }               reduce using rule 52 (Fator -> ID [ Exp ] [ Exp ] .)
+    ]               reduce using rule 52 (Fator -> ID [ Exp ] [ Exp ] .)
+    INT             reduce using rule 52 (Fator -> ID [ Exp ] [ Exp ] .)
+
+
+state 120
+
+    (31) Condicional -> IF ( Comparacao ) { Operacoes } ELSE { . Operacoes }
+    (15) Operacoes -> . Operacao Operacoes
+    (16) Operacoes -> .
+    (17) Operacao -> . Atribuicao
+    (18) Operacao -> . Ciclo
+    (19) Operacao -> . Condicional
+    (20) Operacao -> . Output
+    (21) Atribuicao -> . AtribuicaoInt ;
+    (22) Atribuicao -> . AtribuicaoInt
+    (29) Ciclo -> . WHILE ( Comparacao ) { Operacoes }
+    (30) Condicional -> . IF ( Comparacao ) { Operacoes }
+    (31) Condicional -> . IF ( Comparacao ) { Operacoes } ELSE { Operacoes }
+    (39) Output -> . PRINT ( Exp ) ;
+    (40) Output -> . PRINT ( STRING ) ;
+    (41) Output -> . PRINTLN ( Exp ) ;
+    (42) Output -> . PRINTLN ( STRING ) ;
+    (23) AtribuicaoInt -> . ID = Exp
+    (24) AtribuicaoInt -> . READ ( ID )
+    (25) AtribuicaoInt -> . ID [ Exp ] = Exp
+    (26) AtribuicaoInt -> . READ ( ID [ Exp ] )
+    (27) AtribuicaoInt -> . ID [ Exp ] [ Exp ] = Exp
+    (28) AtribuicaoInt -> . READ ( ID [ Exp ] [ Exp ] )
+
+    }               reduce using rule 16 (Operacoes -> .)
+    WHILE           shift and go to state 12
+    IF              shift and go to state 13
+    PRINT           shift and go to state 14
+    PRINTLN         shift and go to state 15
+    ID              shift and go to state 16
+    READ            shift and go to state 17
+
+    Operacoes                      shift and go to state 125
+    Operacao                       shift and go to state 6
+    Atribuicao                     shift and go to state 7
+    Ciclo                          shift and go to state 8
+    Condicional                    shift and go to state 9
+    Output                         shift and go to state 10
+    AtribuicaoInt                  shift and go to state 11
+
+state 121
+
+    (27) AtribuicaoInt -> ID [ Exp ] [ Exp ] = Exp .
+    (43) Exp -> Exp . + Termo
+    (44) Exp -> Exp . - Termo
+
+    ;               reduce using rule 27 (AtribuicaoInt -> ID [ Exp ] [ Exp ] = Exp .)
+    WHILE           reduce using rule 27 (AtribuicaoInt -> ID [ Exp ] [ Exp ] = Exp .)
+    IF              reduce using rule 27 (AtribuicaoInt -> ID [ Exp ] [ Exp ] = Exp .)
+    PRINT           reduce using rule 27 (AtribuicaoInt -> ID [ Exp ] [ Exp ] = Exp .)
+    PRINTLN         reduce using rule 27 (AtribuicaoInt -> ID [ Exp ] [ Exp ] = Exp .)
+    ID              reduce using rule 27 (AtribuicaoInt -> ID [ Exp ] [ Exp ] = Exp .)
+    READ            reduce using rule 27 (AtribuicaoInt -> ID [ Exp ] [ Exp ] = Exp .)
+    $end            reduce using rule 27 (AtribuicaoInt -> ID [ Exp ] [ Exp ] = Exp .)
+    }               reduce using rule 27 (AtribuicaoInt -> ID [ Exp ] [ Exp ] = Exp .)
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 122
+
+    (28) AtribuicaoInt -> READ ( ID [ Exp ] [ Exp ] . )
+
+    )               shift and go to state 126
+
+
+state 123
+
+    (12) Lista -> { NUMBER RLista } .
+
+    ;               reduce using rule 12 (Lista -> { NUMBER RLista } .)
+    INT             reduce using rule 12 (Lista -> { NUMBER RLista } .)
+    WHILE           reduce using rule 12 (Lista -> { NUMBER RLista } .)
+    IF              reduce using rule 12 (Lista -> { NUMBER RLista } .)
+    PRINT           reduce using rule 12 (Lista -> { NUMBER RLista } .)
+    PRINTLN         reduce using rule 12 (Lista -> { NUMBER RLista } .)
+    ID              reduce using rule 12 (Lista -> { NUMBER RLista } .)
+    READ            reduce using rule 12 (Lista -> { NUMBER RLista } .)
+    $end            reduce using rule 12 (Lista -> { NUMBER RLista } .)
+
+
+state 124
+
+    (13) RLista -> , NUMBER . RLista
+    (13) RLista -> . , NUMBER RLista
+    (14) RLista -> .
+
+    ,               shift and go to state 118
+    }               reduce using rule 14 (RLista -> .)
+
+    RLista                         shift and go to state 127
+
+state 125
+
+    (31) Condicional -> IF ( Comparacao ) { Operacoes } ELSE { Operacoes . }
+
+    }               shift and go to state 128
+
+
+state 126
+
+    (28) AtribuicaoInt -> READ ( ID [ Exp ] [ Exp ] ) .
+
+    ;               reduce using rule 28 (AtribuicaoInt -> READ ( ID [ Exp ] [ Exp ] ) .)
+    WHILE           reduce using rule 28 (AtribuicaoInt -> READ ( ID [ Exp ] [ Exp ] ) .)
+    IF              reduce using rule 28 (AtribuicaoInt -> READ ( ID [ Exp ] [ Exp ] ) .)
+    PRINT           reduce using rule 28 (AtribuicaoInt -> READ ( ID [ Exp ] [ Exp ] ) .)
+    PRINTLN         reduce using rule 28 (AtribuicaoInt -> READ ( ID [ Exp ] [ Exp ] ) .)
+    ID              reduce using rule 28 (AtribuicaoInt -> READ ( ID [ Exp ] [ Exp ] ) .)
+    READ            reduce using rule 28 (AtribuicaoInt -> READ ( ID [ Exp ] [ Exp ] ) .)
+    $end            reduce using rule 28 (AtribuicaoInt -> READ ( ID [ Exp ] [ Exp ] ) .)
+    }               reduce using rule 28 (AtribuicaoInt -> READ ( ID [ Exp ] [ Exp ] ) .)
+
+
+state 127
+
+    (13) RLista -> , NUMBER RLista .
+
+    }               reduce using rule 13 (RLista -> , NUMBER RLista .)
+
+
+state 128
+
+    (31) Condicional -> IF ( Comparacao ) { Operacoes } ELSE { Operacoes } .
+
+    WHILE           reduce using rule 31 (Condicional -> IF ( Comparacao ) { Operacoes } ELSE { Operacoes } .)
+    IF              reduce using rule 31 (Condicional -> IF ( Comparacao ) { Operacoes } ELSE { Operacoes } .)
+    PRINT           reduce using rule 31 (Condicional -> IF ( Comparacao ) { Operacoes } ELSE { Operacoes } .)
+    PRINTLN         reduce using rule 31 (Condicional -> IF ( Comparacao ) { Operacoes } ELSE { Operacoes } .)
+    ID              reduce using rule 31 (Condicional -> IF ( Comparacao ) { Operacoes } ELSE { Operacoes } .)
+    READ            reduce using rule 31 (Condicional -> IF ( Comparacao ) { Operacoes } ELSE { Operacoes } .)
+    $end            reduce using rule 31 (Condicional -> IF ( Comparacao ) { Operacoes } ELSE { Operacoes } .)
+    }               reduce using rule 31 (Condicional -> IF ( Comparacao ) { Operacoes } ELSE { Operacoes } .)
+
